@@ -11,7 +11,8 @@ var _config = new ConfigSettingWork();
 
 var _sendMail = require('../mail/sendMail');
 
-var logger = require('../logConfig').logger('./works/CallposgWork', 'debug');
+var logpath = './works/CallposgWork';
+var logger = require('../logConfig').logger(logpath, 'debug');
 
 //callback function
 var cb_sendMail = function (mailMsg, subject, html, from, to) {
