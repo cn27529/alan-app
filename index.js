@@ -80,6 +80,8 @@ function normalizePort(val) {
 
 function onError(error) {
 
+    console.error(error.code);
+    //console.log(error);
     logger.error(error);
 
     if (error.syscall !== 'listen') {
@@ -93,12 +95,12 @@ function onError(error) {
     // handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
-            //console.error(bind + ' requires elevated privileges');
+            console.error(bind + ' requires elevated privileges');
             logger.info(bind + ' requires elevated privileges');
             process.exit(1);
             break;
         case 'EADDRINUSE':
-            //console.error(bind + ' is already in use');
+            console.error(bind + ' is already in use');
             logger.info(bind + ' is already in use');
             process.exit(1);
             break;
