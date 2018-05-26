@@ -7,7 +7,7 @@
     "buildpacks": [],
     "env": {
         "NODE_ENV": {
-            "description": "Run as a production environment on Heroku",
+            "description": "Run as a test environment on Heroku",
             "value": "test"
         }
     },
