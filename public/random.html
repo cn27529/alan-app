@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Math.random</title>
+</head>
+<body>
+    <h1 id="val">0~9 of a 1 random number</h1>
+    <h1 id="val2">0 to 9, random colors</h1>
+    <h1 id="val3">0 to 9, show 4 not repeat the number of random</h1>
+    <button id="go">GO</button>
+</body>
+<script>
+
+    var my_random_obj = {
+        
+        get_val : function(){
+            return parseInt(Math.random()*10);
+        },
+        check_input_indexOf : function(val, array){
+            var is_indexOf = false;  
+            for (var i = 0; i < array.length; i++) { if (array[i] === val) { is_indexOf = true; break; } }
+            return is_indexOf;
+        }
+        , create_random : function (res_len)
+        {
+            var res_vals = [];
+            while(res_vals.length !== res_len){
+                    var val = this.get_val();
+                    var is_indexOf = this.check_input_indexOf(val,res_vals);
+                    if(!is_indexOf) res_vals.push(val);
+                }
+            return res_vals.toString().replace(/,/g, '');
+        }
+        , get_color_code : function ()
+        {
+            var color_code='';
+            //字串的每一字元的範圍
+            var randomArr=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];  
+            //產生一個六位元的字串  
+            for(var i=0;i<6;i++){  
+                //15是範圍上限，0是範圍下限，兩個函數保證產生出來的亂數是整數
+                color_code+=randomArr[Math.ceil(Math.random()*(15-0)+0)];
+            }  
+            return '#'+color_code;
+        }
+
+    };
+
+    function my_go(){
+        var myHTML;
+        myHTML = document.getElementById("val");
+        myHTML.innerHTML = my_random_obj.create_random(1);
+    }
+
+    function my_go2(){
+        var myHTML;
+        myHTML = document.getElementById("val2");
+        var color_codes = [];
+        for (var i = 0; i < 10; i++) color_codes.push(my_random_obj.get_color_code());
+        myHTML.innerHTML ='';
+        for (var i = 0; i < 10; i++) myHTML.innerHTML += '<font color='+ color_codes[i] +'>' + i.toString() + '</font>';
+    }
+
+    function my_go3(){
+        var myHTML;
+        myHTML = document.getElementById("val3");
+        myHTML.innerHTML = my_random_obj.create_random(4);
+    }
+
+    setInterval(my_go,1000);
+    setInterval(my_go2,100);
+    setInterval(my_go3,3000);
+
+    //var go = document.getElementById('go').addEventListener("click", my_go);
+
+</script>
+</html>

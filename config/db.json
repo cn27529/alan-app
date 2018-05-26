@@ -1,0 +1,27 @@
+{
+    "development": {
+        "database": "sqlite",
+        "dialect": "sqlite",
+        "storage": "./db.cycoholic-db.sqlite"
+    },
+    "test": {
+        "username": "dbouser",
+        "password": "1qaz!QAZ",
+        "database": "cycoholic_test",
+        "host": "35.185.136.7",
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "dbouser",
+        "password": "1qaz!QAZ",
+        "database": "cycoholic",
+        "host": "35.185.136.7",
+        "dialect": "mysql"
+    },
+    "heroku": {
+        "database": "sqlite",
+        "dialect": "sqlite",
+        "storage": "./db.cycoholic-db.sqlite"
+    }
+
+}

@@ -1,0 +1,18 @@
+{
+    "development": {
+        "dialect": "sqlite",
+        "storage": "./db.cycoholic-db.sqlite"
+    },
+    "test": {
+        "dialect": "sqlite",
+        "storage": ":memory:"
+    },
+    "production": {
+        "username": "dbouser",
+        "password": "1qaz!QAZ",
+        "database": "mydb",
+        "host": "35.185.136.7",
+        "dialect": "mysql"
+    }
+
+}

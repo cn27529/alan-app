@@ -1,0 +1,31 @@
+{
+    "development": {
+        "update": "http://localhost:8080/posg/callposg-update",
+        "create": "http://localhost:8080/posg/callposg-create",
+        "getmember": "http://localhost:8080/posg/callposg-getmember",
+        "getsells": "http://localhost:8080/posg/callposg-getsells?",
+        "error2mails": "cn27529@gmail.com"
+    },
+    "test": {
+        "update": "http://114.34.37.18:9001/API/UpdateMember",
+        "create": "http://114.34.37.18:9001/API/CreateMember",
+        "getmember": "http://114.34.37.18:9001/API/GetMember",
+        "getsells": "http://114.34.37.18:9001/API/GetSells",
+        "error2mails": "cn27529@gmail.com, billwstw@gmail.com, vincentlee986@gmail.com"
+    },
+    "production": {
+        "update": "http://114.34.37.18:9000/API/UpdateMember",
+        "create": "http://114.34.37.18:9000/API/CreateMember",
+        "getmember": "http://114.34.37.18:9000/API/GetMember",
+        "getsells": "http://114.34.37.18:9000/API/GetSells",
+        "error2mails": "cn27529@gmail.com, billwstw@gmail.com, vincentlee986@gmail.com"
+    },
+    "heroku": {
+        "update": "https://cycoholic-api.herokuapp.com/posg/update",
+        "create": "https://cycoholic-api.herokuapp.com/posg/create",
+        "getmember": "https://cycoholic-api.herokuapp.com/getmember",
+        "getsells": "https://cycoholic-api.herokuapp.com/getsells",
+        "error2mails": "cn27529@hotmail.com, billwstw@gmail.com, vincentlee986@gmail.com, cycoholics@gmail.com, kiwi@tkpos.com.tw, wisely@tkpos.com.tw, echan0312@tkpos.com.tw"
+    }
+
+}

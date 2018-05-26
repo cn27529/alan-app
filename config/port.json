@@ -1,0 +1,15 @@
+{
+    "development": {
+        "port": "8080"
+    },
+    "test": {
+        "port": "8080"
+    },
+    "production": {
+        "port": "8000"
+    },
+    "heroku": {
+        "port": "8080"
+    }
+
+}

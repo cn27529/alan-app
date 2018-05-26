@@ -1,0 +1,11 @@
+[2018-02-09T05:01:09.212] [ERROR] ./test-callposg.js - {"code":"0001","message":"FAIL","result":"不合法的IP位址"}
+[2018-02-09T05:01:28.467] [ERROR] ./test-callposg.js - {"code":"0003","message":"FAIL","result":"該會員資料不存在"}
+[2018-02-09T05:01:51.250] [ERROR] ./test-callposg.js - {"code":"0003","message":"FAIL","result":"該會員資料不存在"}
+[2018-02-09T05:02:11.247] [ERROR] ./test-callposg.js - {"code":"0003","message":"FAIL","result":"該會員資料不存在"}
+[2018-02-09T05:02:27.166] [ERROR] ./test-callposg.js - {"code":"0000","message":"SUCCESS","result":{"mobilphone":"0909-123123","memberid":"0000001","bonus":"0.00"}}
+[2018-02-09T05:02:58.681] [ERROR] ./test-callposg.js - {"code":"0003","message":"FAIL","result":"該會員資料不存在"}
+[2018-02-09T05:03:35.297] [ERROR] ./test-callposg.js - {"code":"0000","message":"SUCCESS","result":{"mobilphone":"0909-222333","memberid":"0000002","bonus":"0.00"}}
+[2018-02-09T05:08:05.792] [ERROR] ./test-callposg.js - {"code":"0003","message":"FAIL","result":"該會員資料不存在"}
+[2018-02-09T05:08:58.058] [ERROR] ./test-callposg.js - {"code":"0000","message":"SUCCESS","result":{"mobilphone":"0909-123123","memberid":"0000001","bonus":"0.00"}}
+[2018-02-09T05:09:22.072] [ERROR] ./test-callposg.js - {"code":"0000","message":"SUCCESS","result":{"mobilphone":"0909-222333","memberid":"0000002","bonus":"0.00"}}
+[2018-02-09T05:09:55.333] [ERROR] ./test-callposg.js - {"code":"0000","message":"SUCCESS","result":{"mobilphone":"0909-123123","memberid":"0000001","bonus":"0.00"}}

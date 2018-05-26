@@ -1,0 +1,19 @@
+//Mockup
+{
+    "users": [{
+            "id": 1,
+            "email": "test@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "email": "cn27529@hotmail.com",
+            "password": "123456"
+        },
+        {
+            "id": 3,
+            "email": "ronaldchen44@gmail.com",
+            "password": "123456"
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+[2018-05-10T08:23:19.422] [ERROR] ./works/CallposgWork - { Error: ETIMEDOUT
+    at Timeout._onTimeout (/home/cn27529/cycoholic-api/node_modules/request/request.js:846:19)
+    at ontimeout (timers.js:475:11)
+    at tryOnTimeout (timers.js:310:5)
+    at Timer.listOnTimeout (timers.js:270:5) code: 'ETIMEDOUT', connect: true }
+[2018-05-10T08:23:39.497] [ERROR] ./works/CallposgWork - { Error: ETIMEDOUT
+    at Timeout._onTimeout (/home/cn27529/cycoholic-api/node_modules/request/request.js:846:19)
+    at ontimeout (timers.js:475:11)
+    at tryOnTimeout (timers.js:310:5)
+    at Timer.listOnTimeout (timers.js:270:5) code: 'ETIMEDOUT', connect: true }
+[2018-05-10T08:24:21.456] [ERROR] ./works/CallposgWork - { Error: ETIMEDOUT
+    at Timeout._onTimeout (/home/cn27529/cycoholic-api/node_modules/request/request.js:846:19)
+    at ontimeout (timers.js:475:11)
+    at tryOnTimeout (timers.js:310:5)
+    at Timer.listOnTimeout (timers.js:270:5) code: 'ETIMEDOUT', connect: true }
+[2018-05-10T08:25:42.464] [ERROR] ./works/CallposgWork - { Error: ETIMEDOUT
+    at Timeout._onTimeout (/home/cn27529/cycoholic-api/node_modules/request/request.js:846:19)
+    at ontimeout (timers.js:475:11)
+    at tryOnTimeout (timers.js:310:5)
+    at Timer.listOnTimeout (timers.js:270:5) code: 'ETIMEDOUT', connect: true }
+[2018-05-10T08:25:42.471] [ERROR] ./callposg-getmember.js - undefined
+[2018-05-10T08:25:51.937] [ERROR] ./callposg-getmember.js - {"code":"0001","message":"FAIL","result":"不合法的IP位址"}
+[2018-05-10T08:32:22.274] [ERROR] routes/index.js - 慘了，出錯了
+[2018-05-10T08:33:08.218] [ERROR] routes/index.js - 慘了，出錯了
+[2018-05-10T08:53:40.203] [ERROR] routes/index.js - 慘了，出錯了

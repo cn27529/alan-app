@@ -1,0 +1,99 @@
+{
+    "OK": {
+        "KEY": "",
+        "VAL": ""
+    },
+    "UN1": {
+        "KEY": "-1",
+        "VAL": "沒有找到資料"
+    },
+    "GET1": {
+        "KEY": "1",
+        "VAL": "資料己取得"
+    },
+    "ALL": {
+        "KEY": "all",
+        "VAL": "資料己取得"
+    },
+    "UNADD": {
+        "KEY": "-add",
+        "VAL": "資料建立失敗"
+    },
+    "ADD": {
+        "KEY": "add",
+        "VAL": "資料己建立"
+    },
+    "MOD": {
+        "KEY": "mod",
+        "VAL": "資料己更新"
+    },
+    "UNMOD": {
+        "KEY": "-mod",
+        "VAL": "資料更新失敗"
+    },
+    "CHECKVAL": {
+        "KEY": "-checkval",
+        "VAL": "資料輸入不正確"
+    },
+    "UNSQL": {
+        "KEY": "-sql",
+        "VAL": "sql異常"
+    },
+    "LOGINOK": {
+        "KEY": "loginok",
+        "VAL": "帳號正確"
+    },
+    "UNLOGINOK": {
+        "KEY": "-loginok",
+        "VAL": "帳號不正確"
+    },
+    "LOGINPWDOK": {
+        "KEY": "loginpwdok",
+        "VAL": "帳號密碼正確"
+    },
+    "UNLOGINPWDOK": {
+        "KEY": "-loginpwdok",
+        "VAL": "帳號密碼不正確"
+    },
+    "PWDOK": {
+        "KEY": "pwdok",
+        "VAL": "密碼正確"
+    },
+    "UNPWDOK": {
+        "KEY": "-pwdok",
+        "VAL": "密碼不正確"
+    },
+    "UNVAL": {
+        "KEY": "-val",
+        "VAL": "資料必填寫"
+    },
+    "LOGOUT": {
+        "KEY": "logout",
+        "VAL": "己經登出"
+    },
+    "UNLOGOUT": {
+        "KEY": "-logout",
+        "VAL": "登出有異常"
+    },
+    "LOSTPWD": {
+        "KEY": "lostpwd",
+        "VAL": "忘記密碼"
+    },
+    "SENDLOSTPWD": {
+        "KEY": "sendlostpwd",
+        "VAL": "己送出忘記密碼"
+    },
+    "NOEMAIL": {
+        "KEY": "noemail",
+        "VAL": "沒有電子郵件"
+    },
+    "RENEWPWD": {
+        "KEY": "renewpwd",
+        "VAL": "新密碼值己變更"
+    },
+    "UNNEWPWD": {
+        "KEY": "-newpwd",
+        "VAL": "新密碼值兩者不相同"
+    }
+
+}
