@@ -9,7 +9,7 @@ var logger = require('./logConfig').logger('./index', 'debug');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '8000');
+var port = normalizePort(process.env.PORT || '5000');
 //var port = normalizePort(process.env.PORT || '5000');
 //var port = normalizePort(process.env.PORT || '80');
 
