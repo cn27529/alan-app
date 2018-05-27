@@ -35,3 +35,22 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 ### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+# bkapp
+
+## Heroku git path
+```
+heroku sqlite
+https://git.heroku.com/alan-app.git
+```
+## One click
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+## Heroku console deploy
+```
+git status
+git add .
+git commit -am "heroku"
+git push heroku master <---push to heroku
+heroku logs --tail   <---see push logs
+```
