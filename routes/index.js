@@ -10,8 +10,8 @@ var logger = require('../logConfig').logger(logpath, 'debug');
 
 //請求路由時，會經過它
 router.use(function(req,res,next){
-    console.log('---------------'+ req.originalUrl);
-    logger.info('---------------'+ req.originalUrl);
+    //console.log('---------------'+ req.originalUrl);
+    //logger.info('---------------'+ req.originalUrl);
     next();
 })
 
