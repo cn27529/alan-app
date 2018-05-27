@@ -89,29 +89,20 @@
         var cool = '<%=cool%>';
         $('#cool').val(cool);
 
-        var jqxhr = $.get("/cool", function (data) {
-            //alert( "success" );
-        })
-        // .done(function(data) {
-        //     //alert( "second success" );
+        // var jqxhr = $.get("/cool", function (data) {
+        //     //alert( "success" );
         // })
-        // .fail(function(data) {
-        //     //alert( "error" );
-        // })
-        // .always(function(data) {
-        //     //alert( "finished" );
+
+        // jqxhr.done(function (data) {
+        //     //alert(data);
+        //     var cools = data.data;
+        //     setInterval(function () {
+        //         var ii = parseInt(Math.random() * cools.length);
+        //         $('#cool').html(cools[ii])
+        //         //testAnim('fadeInDownBig');
+        //     }, 2000);
+
         // });
-
-        jqxhr.done(function (data) {
-            //alert(data);
-            var cools = data.data;
-            setInterval(function () {
-                var ii = parseInt(Math.random() * cools.length);
-                $('#cool').html(cools[ii])
-                //testAnim('fadeInDownBig');
-            }, 2000);
-
-        });
 
     })
 </script>
