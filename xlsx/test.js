@@ -30,7 +30,8 @@ if (!fp_obj.isok) {
 var workbook = XLSX.readFile(myFilepath);
 var first_sheet_name = workbook.SheetNames[0];
 var ws = workbook.Sheets[first_sheet_name];
-var mysheet_items = XLSX.utils.sheet_to_csv(ws, { header: 0 });
+//var mysheet_items = XLSX.utils.sheet_to_csv(ws, { header: 0 });
+var mysheet_items = XLSX.utils.sheet_to_json(ws, { header: 1 });
 
 //console.log(JSON.stringify(mysheet_items));
 
@@ -38,15 +39,16 @@ var mysheet_items = XLSX.utils.sheet_to_csv(ws, { header: 0 });
 //console.log(mysheet_items);
 var csv_items = new Array();
 
-csv_items = mysheet_items.split('\n');
-
-console.log(csv_items);
-logger.info(csv_items);
-
-//var json = a2j(csv_items);
-//logger.info(json);
+//csv_items = mysheet_items.split('\n');
 
 //console.log(mysheet_items);
+//logger.info(csv_items);
+
+var json = a2j(mysheet_items);
+console.log(json);
+logger.info(json);
+
+//console.log(json);
 //logger.info(mysheet_items);
 
 console.log('顆顆')

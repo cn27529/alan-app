@@ -86,7 +86,7 @@ mysheet_items.map(function (value, index) {
 
 })
 
-console.log(mysheet_items);
+//console.log(mysheet_items);
 
 //var json_str = JSON.stringify(mysheet);
 //console.log(json_str);

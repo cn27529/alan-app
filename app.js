@@ -47,6 +47,7 @@ var cool = require('./routes/cool');
 var callposg = require('./routes/callposg');
 var admin = require('./routes/admin');
 var logs = require('./routes/logs'); //add on 20180520
+var vendor = require('./routes/vendor'); //add on 20180520
 
 app.use('/', index);
 app.use('/index', index);
@@ -59,6 +60,7 @@ app.use('/cool', cool);
 app.use('/callposg', callposg);
 app.use('/admin', admin);
 app.use('/logs', logs); //add on 20180520
+app.use('/vendor', vendor); //add on 20180520
 
 // catch 404 and forward to error handler
 app.use(function (err, req, res, next) {

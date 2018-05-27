@@ -1,0 +1,123 @@
+<!-- http://cythilya.blogspot.tw/2015/02/bootstrap-rwd-template.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        <%=title%>
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="well">
+            <h2>
+                <a href="javascript:;">
+                    <%=title%>
+                </a>
+                <span id="cool">
+                    <%=cool%>
+                </span>
+            </h2>
+        </div>
+
+        <table class="table table-bordered">
+                <thead class="fixedThead">
+                <tr>
+                    <% for(var i=0; i< colnames.length; i++) { %>
+                        <th>
+                            <%= colnames[i] %>
+                        </th>
+                        <% } %>
+                </tr>
+            </thead>
+            <tbody class="scrollTbody">
+                <% for(var i=0; i< data.length; i++) { %>
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= data[i].代號 %>">
+                                    <%= data[i].代號 %>
+                                </button>
+                        </td>
+                        <td><%= data[i].名稱 %>
+                            <div id="demo<%= data[i].代號 %>" class="collapse">
+                                    
+                                    <h4>
+                                        連絡人
+                                    </h4>
+                                    <ul class="list-group">
+                                            <li class="list-group-item">王小明0928230520</li>
+                                            <li class="list-group-item">維大力 0223445555</li>
+                                          </ul>
+
+                                  </div>
+                                </td>
+                        <td><%= data[i].電話 %></td>
+                        <td><%= data[i].傳真 %></td>
+                        <td><%= data[i].郵遞區號 %></td>
+                        <td><%= data[i].地址 %></td>
+                        <td><%= data[i].經營項目 %></td>
+                        <td><%= data[i].URL %></td>
+                        <td><%= data[i].EMail %></td>
+                        <td><%= data[i].LINE %></td>
+                        <td><%= data[i].備註 %></td>				
+                    </tr>
+                    
+
+                    <% } %>
+
+            </tbody>
+        </table>
+
+        
+    </div>
+</body>
+<script>
+
+    $(function () {
+        
+        //console.log(jQuery)
+        var cool = '<%=cool%>';
+        $('#cool').val(cool);
+
+        var jqxhr = $.get("/cool", function (data) {
+            //alert( "success" );
+        })
+        // .done(function(data) {
+        //     //alert( "second success" );
+        // })
+        // .fail(function(data) {
+        //     //alert( "error" );
+        // })
+        // .always(function(data) {
+        //     //alert( "finished" );
+        // });
+
+        jqxhr.done(function (data) {
+            //alert(data);
+            var cools = data.data;
+            setInterval(function () {
+                var ii = parseInt(Math.random() * cools.length);
+                $('#cool').html(cools[ii])
+                //testAnim('fadeInDownBig');
+            }, 2000);
+
+        });
+
+    })
+</script>
+
+<style>
+        
+</style>
+
+</html>

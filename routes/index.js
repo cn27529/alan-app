@@ -8,9 +8,16 @@ var logger = require('../logConfig').logger(logpath, 'debug');
 
 //文件 https://cn27529.gitbooks.io/cycoholic-api/content/
 
+//請求路由時，會經過它
+router.use(function(req,res,next){
+    //console.log('---------------'+ req.originalUrl);
+    //logger.info('---------------'+ req.originalUrl);
+    next();
+})
+
 router.get('/', function (req, res) {
 
-    var title = 'index-api running now.';
+    var title = req.originalUrl + ' running now.';
     logger.info(title);
 
     res.render('index', {
@@ -19,6 +26,8 @@ router.get('/', function (req, res) {
         // items: [1991, 'byvoid', 'express', 'Node.js']
         //layout: "layout"
     });
+
+    //next();
 
 });
 

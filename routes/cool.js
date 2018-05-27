@@ -5,7 +5,6 @@ var cool = require('cool-ascii-faces');
 
 var _err = require('../data/err');
 
-
 var logpath = './routes/cool';
 var logger = require('../logConfig').logger(logpath, 'debug');
 
@@ -30,6 +29,7 @@ router.get('/', function (req, res) {
         json.data = cools;
 
     } catch (err) {
+        console.error(err);
         logger.error(err);
     }
 
