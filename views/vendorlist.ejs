@@ -30,7 +30,8 @@
             </h2>
         </div>
 
-        <table class="table table-bordered">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
                 <thead class="fixedThead">
                 <tr>
                     <% for(var i=0; i< colnames.length; i++) { %>
@@ -48,7 +49,7 @@
                                     <%= data[i].代號 %>
                                 </button>
                         </td>
-                        <td><%= data[i].名稱 %>
+                        <td｀><%= data[i].名稱 %>
                             <div id="demo<%= data[i].代號 %>" class="collapse">
                                     
                                     <h4>
@@ -77,6 +78,8 @@
 
             </tbody>
         </table>
+        </div>
+        
 
         
     </div>
