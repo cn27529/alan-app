@@ -48,7 +48,7 @@ router.get('/list', function (req, res) {
     var colnames = mysheet_items[0];
     //console.log(colnames);
     
-    res.render('vendorlist', {
+    res.render('vendor-list', {
         title: title,
         cool: cool(),
         data: vendor,
@@ -56,7 +56,6 @@ router.get('/list', function (req, res) {
         colnames: colnames,
         vendorps: []
         //layout: "layout"
-
     });
 
 });
