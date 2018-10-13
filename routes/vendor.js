@@ -48,12 +48,12 @@ router.get('/list', function (req, res) {
     var colnames = mysheet_items[0];
     //console.log(colnames);
     
-    res.render('vendor-list', {
+    res.render('vendor-list2', {
         title: title,
         cool: cool(),
         data: data,
-        cols: cols,
-        other:[]
+        cols: colnames,
+        layout: "_bs-layout" //指定layout名可不需副名.ejs
     });
 
 });

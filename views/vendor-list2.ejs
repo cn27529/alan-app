@@ -1,0 +1,94 @@
+<%- contentFor('body')%>
+<div class="well">
+        <h2>
+            <a href="javascript:;">
+                <%=title%>
+            </a>
+            <span id="cool">
+                <%=cool%>
+            </span>
+        </h2>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <% for(var i=0; i< cols.length; i++) { %>
+                    <th>
+                        <%= cols[i] %>
+                    </th>
+                    <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i< data.length; i++) { %>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= data[i].代號 %>">
+                                <%= data[i].代號 %>
+                            </button>
+                    </td>
+                    <td><%= data[i].名稱 %>
+                        <div id="demo<%= data[i].代號 %>" class="collapse">
+                                
+                                <h4>
+                                    連絡人
+                                </h4>
+                                <ul class="list-group">
+                                        <li class="list-group-item">王小明0928230520</li>
+                                        <li class="list-group-item">維大力 0223445555</li>
+                                      </ul>
+
+                              </div>
+                            </td>
+                    <td><%= data[i].電話 %></td>
+                    <td><%= data[i].傳真 %></td>
+                    <td><%= data[i].郵遞區號 %></td>
+                    <td><%= data[i].地址 %></td>
+                    <td><%= data[i].經營項目 %></td>
+                    <td><%= data[i].URL %></td>
+                    <td><%= data[i].EMail %></td>
+                    <td><%= data[i].LINE %></td>
+                    <td><%= data[i].備註 %></td>				
+                </tr>
+                
+
+                <% } %>
+
+        </tbody>
+    </table>
+    </div>
+    
+
+<%- contentFor('js')%>
+<script>
+
+        $(function () {
+            
+            //console.log(jQuery)
+            var cool = '<%=cool%>';
+            $('#cool').val(cool);
+    
+            // var jqxhr = $.get("/cool", function (data) {
+            //     //alert( "success" );
+            // })
+    
+            // jqxhr.done(function (data) {
+            //     //alert(data);
+            //     var cools = data.data;
+            //     setInterval(function () {
+            //         var ii = parseInt(Math.random() * cools.length);
+            //         $('#cool').html(cools[ii])
+            //         //testAnim('fadeInDownBig');
+            //     }, 2000);
+    
+            // });
+    
+        })
+    </script>
+
+<%- contentFor('css')%>
+<style>
+        
+    </style>
