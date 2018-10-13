@@ -15,17 +15,17 @@ router.use(function(req,res,next){
     next();
 });
 
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
 
-    var title = req.originalUrl + ' running now.';
+    var title = req.originalUrl + ' page render for the ' + new Date().toTimeString();
     logger.info(title);
 
-    res.render('index', {
+    var viewContent = {
         title: title,
-        cool: cool()
-        // items: [1991, 'byvoid', 'express', 'Node.js']
-        //layout: "layout"
-    });
+        cool: cool(),
+        layout: "_layout" //指定layout名可不需副名.ejs
+    };
+    res.render('view', viewContent);
 
     //next();
 

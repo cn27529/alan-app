@@ -36,13 +36,13 @@ router.get('/list', function (req, res) {
     //var mysheet_items = XLSX.utils.sheet_to_csv(ws, { header: 0 });
     var mysheet_items = XLSX.utils.sheet_to_json(ws, {header: 1});
 
-    var mysheet_json = XLSX.utils.sheet_to_json(ws, {header: 0});
+    //var mysheet_json = XLSX.utils.sheet_to_json(ws, {header: 0});
     //csv_items = mysheet_items.split('\n');
     //console.log(mysheet_items);
     //logger.info(csv_items);
 
-    var vendor = JSON.parse(a2j(mysheet_items));
-    //console.log(vendor);
+    var data = JSON.parse(a2j(mysheet_items));
+    //console.log(data);
     //logger.info(vendor);
 
     var colnames = mysheet_items[0];
@@ -51,11 +51,9 @@ router.get('/list', function (req, res) {
     res.render('vendor-list', {
         title: title,
         cool: cool(),
-        data: vendor,
-        vendor: vendor,
-        colnames: colnames,
-        vendorps: []
-        //layout: "layout"
+        data: data,
+        cols: cols,
+        other:[]
     });
 
 });

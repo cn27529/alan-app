@@ -32,9 +32,8 @@ app.use("/logs", express.static(path.join(__dirname, 'logs'))); //add on 2018052
 
 app.set('views', path.join(__dirname, 'views')); //設計頁面模板位置，在views子目錄下
 app.set('view engine', 'ejs'); //表明要使用的模板引擎
-//app.use(expressLayouts);
+app.use(expressLayouts);
 //app.set("layoutextractScripts", true)
-// app.set('view engine', 'pug'); 
 
 var account = require('./routes/account');
 var member = require('./routes/member');
@@ -48,6 +47,7 @@ var callposg = require('./routes/callposg');
 var admin = require('./routes/admin');
 var logs = require('./routes/logs'); //add on 20180520
 var vendor = require('./routes/vendor'); //add on 20180520
+var view = require('./routes/view');
 
 app.use('/', index);
 app.use('/index', index);
@@ -61,6 +61,7 @@ app.use('/callposg', callposg);
 app.use('/admin', admin);
 app.use('/logs', logs); //add on 20180520
 app.use('/vendor', vendor); //add on 20180520
+app.use('/view', view);
 
 // catch 404 and forward to error handler
 app.use(function (err, req, res, next) {
