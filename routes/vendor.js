@@ -19,6 +19,9 @@ var filepath = require('../filepath');
 
 router.get('/list', function (req, res) {
 
+    var viewName='vendor-list';
+    var layoutName='_bs-layout'; //指定layout名可不需副名.ejs
+
     var title = req.originalUrl + ' running now.';
     //logger.info(title);
 
@@ -48,12 +51,12 @@ router.get('/list', function (req, res) {
     var colnames = mysheet_items[0];
     //console.log(colnames);
     
-    res.render('vendor-list2', {
+    res.render(viewName, {
         title: title,
         cool: cool(),
         data: data,
         cols: colnames,
-        layout: "_bs-layout" //指定layout名可不需副名.ejs
+        layout: layoutName 
     });
 
 });
