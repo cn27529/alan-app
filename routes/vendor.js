@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var cool = require('cool-ascii-faces');
 var fs = require('fs');
-
 var uuid = require('uuid/v4');
 var path = require('path');
 
@@ -14,13 +13,15 @@ var json_settings = require("../data/settings.json");
 var a2j = require('../arraydata2json');
 var filepath = require('../filepath');
 
+var FAFWork = require('../works/FAFWork');
+
 //文件 https://cn27529.gitbooks.io/cycoholic-api/content/logs.html
 
 
 router.get('/list', function (req, res) {
 
     var viewName='vendor-list';
-    var layoutName='_bs-layout'; //指定layout名可不需副名.ejs
+    var myLayout='_bs-layout'; //指定layout名可不需副名.ejs
 
     var title = req.originalUrl + ' running now.';
     //logger.info(title);
@@ -56,7 +57,7 @@ router.get('/list', function (req, res) {
         cool: cool(),
         data: data,
         cols: colnames,
-        layout: layoutName 
+        layout: myLayout 
     });
 
 });
@@ -84,10 +85,8 @@ router.get('/', function (req, res) {
     logger.info(title);
 
     var myFolder = './xlsx-import-files';
-    var folderFiles = [];
-    folderFiles = getFolderFiles(myFolder);
-    var returnFiles = [];
-    returnFiles = getReturnFiles(folderFiles, myFolder);
+    var folderFiles = FAFWork.getFolderFiles(myFolder);
+    var returnFiles = FAFWork.getReturnFiles(folderFiles, myFolder);
     //console.log(returnFiles)
 
     res.render('vendor', {
@@ -98,71 +97,5 @@ router.get('/', function (req, res) {
     });
 
 });
-
-function getFolderFiles(myFolder) {
-
-    var folderFiles = [];
-
-    fs.readdirSync(myFolder).forEach(function (val) {
-
-        //console.log(index, val);
-        var path_a = myFolder; // other 是一個目錄
-        var path_b = val; // other.txt 是一個存於 other 目錄裡的檔案
-        var path_resolve = path.resolve(path_a, path_b); // 解析成絕對路徑
-        //console.info(path_resolve);
-        // 輸出內容：/Users/carlos/Documents/test/other/other.txt
-        var extname = path.extname(path_resolve);
-        //console.info(path.extname(path_resolve));
-
-        //排除不要的副名
-        if (extname.toLowerCase() === '.md') return false;
-        folderFiles.push(val);
-    });
-
-    //logger.info(folderFiles)
-    return folderFiles;
-}
-
-function getFilesizeInBytes(filename) {
-    var stats = fs.statSync(filename)
-    var fileSizeInBytes = stats["size"]
-    return fileSizeInBytes
-}
-
-function getReturnFiles(folderFiles, myFolder) {
-
-    var returnFiles = [];
-
-    folderFiles.forEach(function (val, index, array) {
-
-        //console.log(index, val);
-        var path_a = myFolder; // other 是一個目錄
-        var path_b = val; // other.txt 是一個存於 other 目錄裡的檔案
-        var path_resolve = path.resolve(path_a, path_b); // 解析成絕對路徑
-        //console.info(path_resolve);
-        // 輸出內容：/Users/carlos/Documents/test/other/other.txt
-        var extname = path.extname(path_resolve);
-
-        var fileSizeInBytes = getFilesizeInBytes(path_resolve);
-
-        //console.log(file);
-        var myInfo = {
-            mb: ((fileSizeInBytes / 1024) / 1024).toFixed(2),
-            kb: (fileSizeInBytes / 1024).toFixed(2),
-            bytes: fileSizeInBytes,
-            fullpatn: path_resolve,
-            extname: extname,
-            name: val,
-            id: uuid()
-        };
-        returnFiles.push(myInfo)
-
-    });
-
-    //logger.info(returnFiles);
-
-    return returnFiles;
-
-}
 
 module.exports = router;
