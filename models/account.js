@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
             freezeTableName: false,
             classMethods: {
                 associate: function (models) {
-                    Account.hasMany(models.Profile)
+                    Account.hasMany(models.Profile);
                 }
             }
         });

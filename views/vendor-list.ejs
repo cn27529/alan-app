@@ -1,4 +1,8 @@
 <%- contentFor('body')%>
+<script>
+    alert('contentFor("body")');
+</script>
+
 <div class="well">
         <h2>
             <a href="javascript:;">
@@ -63,33 +67,13 @@
 
 <%- contentFor('js')%>
 <script>
-
-        $(function () {
-            
-            //console.log(jQuery)
-            var cool = '<%=cool%>';
-            $('#cool').val(cool);
-    
-            // var jqxhr = $.get("/cool", function (data) {
-            //     //alert( "success" );
-            // })
-    
-            // jqxhr.done(function (data) {
-            //     //alert(data);
-            //     var cools = data.data;
-            //     setInterval(function () {
-            //         var ii = parseInt(Math.random() * cools.length);
-            //         $('#cool').html(cools[ii])
-            //         //testAnim('fadeInDownBig');
-            //     }, 2000);
-    
-            // });
-    
-        })
-        
-    </script>
+    alert('contentFor("js")');
+</script>
 
 <%- contentFor('css')%>
+<script>
+    alert('contentFor("css")');
+</script>
 <style>
-        
+    
     </style>

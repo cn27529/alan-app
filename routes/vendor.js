@@ -20,9 +20,6 @@ var FAFWork = require('../works/FAFWork');
 
 router.get('/list', function (req, res) {
 
-    var viewName='vendor-list';
-    var myLayout='_bs-layout'; //指定layout名可不需副名.ejs
-
     var title = req.originalUrl + ' running now.';
     //logger.info(title);
 
@@ -52,12 +49,12 @@ router.get('/list', function (req, res) {
     var colnames = mysheet_items[0];
     //console.log(colnames);
     
-    res.render(viewName, {
+    res.render('vendor-list', {
         title: title,
         cool: cool(),
         data: data,
         cols: colnames,
-        layout: myLayout 
+        layout: '_bs-layout' //指定layout名可不需副名.ejs 
     });
 
 });
@@ -74,7 +71,7 @@ router.get('/info/:filename', function (req, res) {
         title: title,
         cool: cool(),
         data: content
-        //layout: "layout"
+        //layout: "_layout"
     });
 
 });
@@ -92,8 +89,8 @@ router.get('/', function (req, res) {
     res.render('vendor', {
         title: title,
         cool: cool(),
-        data: returnFiles
-        //layout: "layout"
+        data: returnFiles,
+        layout: "_layout"
     });
 
 });

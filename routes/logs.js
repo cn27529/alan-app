@@ -27,7 +27,7 @@ router.get('/', function (req, res) {
         title: title,
         cool: cool(),
         data: returnFiles
-        //layout: "layout"
+        //layout: "_layout"
     });
 
 });
@@ -44,7 +44,7 @@ router.get('/:filename', function (req, res) {
         title: title,
         cool: cool(),
         data: content
-        //layout: "layout"
+        //layout: "_layout"
     });
 
 });

@@ -22,9 +22,9 @@ router.get('/', function (req, res) {
 
     res.render('index', {
         title: title,
-        cool: cool()
+        cool: cool(),
         // items: [1991, 'byvoid', 'express', 'Node.js']
-        //layout: "layout"
+        layout: "_bs-layout"
     });
 
     //next();
