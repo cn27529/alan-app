@@ -39,15 +39,15 @@ var account = require('./routes/account');
 var member = require('./routes/member');
 var random = require('./routes/random');
 var index = require('./routes/index');
-
 var posg = require('./routes/posg');
 var cool = require('./routes/cool');
-
 var callposg = require('./routes/callposg');
 var admin = require('./routes/admin');
 var logs = require('./routes/logs'); //add on 20180520
 var vendor = require('./routes/vendor'); //add on 20180520
 var view = require('./routes/view');
+var product = require('./routes/product');
+var classification = require('./routes/classification');
 
 app.use('/', index);
 app.use('/index', index);
@@ -62,6 +62,8 @@ app.use('/admin', admin);
 app.use('/logs', logs); //add on 20180520
 app.use('/vendor', vendor); //add on 20180520
 app.use('/view', view);
+app.use('/product', product); //20181016
+app.use('/classification', classification); //20181016
 
 // catch 404 and forward to error handler
 app.use(function (err, req, res, next) {

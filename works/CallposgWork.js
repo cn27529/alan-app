@@ -6,7 +6,7 @@ var request = require('request');
 var uuid = require('uuid/v4');
 var moment = require('moment');
 
-var ConfigSettingWork = require('./ConfigSettingWork')
+var ConfigSettingWork = require('./ConfigSettingWork');
 var _config = new ConfigSettingWork();
 
 var _sendMail = require('../mail/sendMail');

@@ -45,7 +45,7 @@ module.exports = function () {
         getReturnFiles: function(folderFiles, myFolder) {
         
             var returnFiles = [];
-        
+            
             folderFiles.forEach(function (val, index, array) {
         
                 //console.log(index, val);
@@ -56,7 +56,10 @@ module.exports = function () {
                 // 輸出內容：/Users/carlos/Documents/test/other/other.txt
                 var extname = path.extname(path_resolve);
         
-                var fileSizeInBytes = this.getFilesizeInBytes(path_resolve);
+                //var fileSizeInBytes = getFilesizeInBytes(path_resolve);
+
+                var stats = fs.statSync(path_resolve);
+                var fileSizeInBytes = stats["size"];
         
                 //console.log(file);
                 var myInfo = {

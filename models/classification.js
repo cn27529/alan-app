@@ -3,7 +3,7 @@
 module.exports = function (sequelize, DataTypes) {
 
     //https://cn27529.gitbooks.io/alan-app-db/content/classification_table.html
-    var Classification = sequelize.define("classification", {
+    var Classification = sequelize.define("Classification", {
         CId: DataTypes.STRING, //
         CName: DataTypes.STRING,
         localtime: DataTypes.STRING //

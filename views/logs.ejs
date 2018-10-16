@@ -1,31 +1,18 @@
-<!-- http://cythilya.blogspot.tw/2015/02/bootstrap-rwd-template.html -->
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        <%=title%>
-    </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+<!--  -->
 
-<body>
+<%- contentFor('body')%>
     <div class="jumbotron" style="">
         <!--<div class="container">
-             <h1>
-                力愙運動API文件(cycoholic-api)
-            </h1>
-            <p></p> 
-        </div>-->
+                 <h1>
+                    力愙運動API文件(cycoholic-api)
+                </h1>
+                <p></p> 
+            </div>-->
         <!-- 4:3 aspect ratio -->
         <!-- <div class="embed-responsive embed-responsive-4by3">
-            <iframe class="embed-responsive-item" src="https://cn27529.gitbooks.io/cycoholic-api/content/"></iframe>
-        </div> -->
+                <iframe class="embed-responsive-item" src="https://cn27529.gitbooks.io/cycoholic-api/content/"></iframe>
+            </div> -->
         <div class="container">
             <h2>
                 <a href="https://cn27529.gitbooks.io/cycoholic-api/content/logs.html">
@@ -37,7 +24,7 @@
             </h2>
             <ul class="nav">
                 <% for(var i=0; i< data.length; i++) { %>
-
+    
                     <a style="margin-top: 10px;" target="blank" href="../logs/<%= data[i].name %>" class="btn btn-primary btn-lg active" role="button"
                         aria-pressed="true">
                         <%= data[i].name %>
@@ -46,45 +33,48 @@
                                     kb
                             </div>
                     </a>
-
+    
                     <% } %>
             </ul>
-
+    
         </div>
     </div>
 
-</body>
-<script>
-    $(function () {
-        //console.log(jQuery)
-        var cool = '<%=cool%>';
-        $('#cool').val(cool);
+    <%- contentFor('js')%>
+        <script>
+            $(function () {
+                //console.log(jQuery)
+                var cool = '<%=cool%>';
+                $('#cool').val(cool);
 
-        var jqxhr = $.get("/cool", function (data) {
-            //alert( "success" );
-        })
-        // .done(function(data) {
-        //     //alert( "second success" );
-        // })
-        // .fail(function(data) {
-        //     //alert( "error" );
-        // })
-        // .always(function(data) {
-        //     //alert( "finished" );
-        // });
+                var jqxhr = $.get("/cool", function (data) {
+                    //alert( "success" );
+                })
+                // .done(function(data) {
+                //     //alert( "second success" );
+                // })
+                // .fail(function(data) {
+                //     //alert( "error" );
+                // })
+                // .always(function(data) {
+                //     //alert( "finished" );
+                // });
 
-        jqxhr.done(function (data) {
-            //alert(data);
-            var cools = data.data;
-            setInterval(function () {
-                var ii = parseInt(Math.random() * cools.length);
-                $('#cool').html(cools[ii])
-                //testAnim('fadeInDownBig');
-            }, 2000);
+                jqxhr.done(function (data) {
+                    //alert(data);
+                    var cools = data.data;
+                    setInterval(function () {
+                        var ii = parseInt(Math.random() * cools.length);
+                        $('#cool').html(cools[ii])
+                        //testAnim('fadeInDownBig');
+                    }, 2000);
 
-        });
+                });
 
-    })
-</script>
+            })
+        </script>
 
-</html>
+        <%- contentFor('css')%>
+            <style>
+            </style>
+
