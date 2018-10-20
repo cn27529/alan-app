@@ -20,14 +20,21 @@
 </head>
 
 <body>
-    <div class="ts container">
+    <div class="ts narrow container">
         <div></div>
         <!--標題-->
         <div class="ts segment">
             <div class="ts center aligned four column grid">
                 <div class="left aligned two column row">
                     <div class="column">
-                        <h1><%=title%></h1>
+                            <div class="ts large breadcrumb">
+                                    <a class="section" href="#">首頁</a>
+                                    <i class="right chevron icon divider"></i>
+                                    <a class="section">
+                                            <%=title%>
+                                    </a>
+                                </div>
+                        
                     </div>
                     <div class="right aligned column">
                         <%=cool%>

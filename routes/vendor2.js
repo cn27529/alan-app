@@ -31,11 +31,11 @@ router.get('/', function (req, res) {
     var returnFiles = _FAFWork.getReturnFiles(folderFiles, myFolder);
     console.log(returnFiles);
 
-    res.render('product', {
+    res.render('vendor', {
         title: title,
         cool: cool(),
         data: returnFiles,
-        layout: '_bs-layout' //指定layout名可不需副名.ejs 
+        layout: '_tocas-layout' //指定layout名可不需副名.ejs 
     });
 
 });
@@ -52,7 +52,7 @@ router.get('/all', function (req, res) {
         data: []
     };
 
-    models.Product.findAll({
+    models.supplier.findAll({
             // where: {
             //     tag: 'admin'
             // },
@@ -65,8 +65,8 @@ router.get('/all', function (req, res) {
 
             //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
             json.data = data;
-            json.code = _err.ALL.KEY
-            json.msg = _err.ALL.VAL
+            json.code = _err.ALL.KEY;
+            json.msg = _err.ALL.VAL;
             res.json(json);
 
         })
@@ -94,73 +94,13 @@ router.get('/list', function (req, res) {
         data: []
     };
 
-    var title = 'product-list';
-    var colnames = ['PId', 'PClass', 'PName', 'PSpecification', 'PUnit'];
-
-    models.Product.findAll({
+    var title = 'vendor-list';
+    var colnames = ['SId', 'SName','STel','SFax','SAddress'];
+   
+    models.supplier.findAll({
             // where: {
             //     tag: 'admin'
             // },
-            //tableHint: TableHints.NOLOCK,
-            order: [
-                // Will escape username and validate DESC against a list of valid direction parameters
-                ['id', 'ASC']
-            ]
-        }).then(function (data) {
-
-            //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
-            json.data = data;
-            json.code = _err.ALL.KEY
-            json.msg = _err.ALL.VAL
-            //res.json(json);
-
-            res.render('product-list', {
-                title: title,
-                cool: cool(),
-                data: json.data,
-                stringJson: JSON.stringify(json.data),
-                cols: colnames,
-                layout: '_tocas-layout' //指定layout名可不需副名.ejs 
-            });
-
-        })
-        .catch(function (err) {
-
-            console.log(err);
-            json.code = _err.UNSQL.KEY;
-            json.msg = err;
-            logger.error(err);
-            //res.json(json);
-
-        });
-
-
-
-});
-
-router.get('/bycategory/:v', function (req, res) {
-
-    logger.info('/by');
-    var value = req.params.v;
-
-    console.log('value=', value);
-
-    var keyword = req.params.keyword;
-    //var token = req.params.token; //先不檢查
-    var json = {
-        msg: _err.UN1.VAL,
-        code: _err.UN1.KEY,
-        data: []
-    };
-
-    var title = 'product-list';
-    if (value !== '') title = 'view product by category';
-    var colnames = ['PId', 'PClass', 'PName', 'PSpecification', 'PUnit'];
-
-    models.Product.findAll({
-            where: {
-                PClass: value
-            },
             //tableHint: TableHints.NOLOCK,
             order: [
                 // Will escape username and validate DESC against a list of valid direction parameters
@@ -174,7 +114,7 @@ router.get('/bycategory/:v', function (req, res) {
             json.msg = _err.ALL.VAL;
             //res.json(json);
 
-            res.render('product-list', {
+            res.render('vendor-list2', {
                 title: title,
                 cool: cool(),
                 data: json.data,
@@ -197,26 +137,5 @@ router.get('/bycategory/:v', function (req, res) {
 
 
 });
-
-router.get('/info/:filename', function (req, res) {
-
-    var title = '/:filename running now.';
-    logger.info(title);
-
-    var filename = req.param.filename;
-    var content = '';
-
-    res.render('vendorinfo', {
-        title: title,
-        cool: cool(),
-        data: content
-        //layout: "_layout"
-    });
-
-});
-
-
-
-
 
 module.exports = router;

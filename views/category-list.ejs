@@ -2,7 +2,7 @@
 <script>
     //alert('contentFor("body")');
 </script>
-
+<!-- 
 <table class="ts sortable padded large table">
     <thead>
         <tr>
@@ -17,23 +17,60 @@
         <% for(var i=0; i< data.length; i++) { %>
         <tr>
             <td>
-                <button class="ts primary button">
-                    <i class="heart icon"></i>
-                    <%= data[i].CId %>
-                </button>
+                <%= data[i].CId %>
             </td>
             <td>
-                <%= data[i].CName %>
+                <button class="ts primary button"><%= data[i].CName %>
+                        <div class="ts floating circular label">
+                                <%= data[i].Products.length %>
+                        </div>
+                    </button>
+            </td>
+            <td>
+                    <%= data[i].Products.length %>
             </td>
         </tr>
         <% } %>
+
     </tbody>
     <tfoot>
         <tr>
             <th colspan="5">未到人數：3</th>
         </tr>
     </tfoot>
-</table>
+</table> -->
+
+<div class="ts cards">
+        <% for(var i=0; i< data.length; i++) { %>
+
+            <div class="ts primary card">
+
+                    <div class="content">
+                        
+                        <a class="header" href="../product/bycategory/<%= data[i].CId %>">
+                            </a>
+
+                            <% if (data[i].Products.length > 0) { %>
+                                <a class="description" href="../product/bycategory/<%= data[i].CId %>">
+                                <% } else { %>
+                                    <a class="description" href="#!"></a>
+                                    <% } %>
+                        
+                               
+                        <button class="ts primary button"><%= data[i].CName %>&nbsp;&nbsp;的分類產品
+
+                            <div class="ts floating circular label">
+                                    <%= data[i].Products.length %>
+                            </div>
+                        </button>
+                        
+                        </a>
+                    </div>
+                </div>
+
+            <% } %>
+        
+</div>
 
 <%- contentFor('js')%>
 <script>

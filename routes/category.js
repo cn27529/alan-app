@@ -35,7 +35,7 @@ router.get('/', function (req, res) {
         title: title,
         cool: cool(),
         data: returnFiles,
-        layout: '_bs-layout' //指定layout名可不需副名.ejs 
+        layout: '_tocas-layout' //指定layout名可不需副名.ejs 
     });
 
 });
@@ -53,32 +53,37 @@ router.get('/all', function (req, res) {
     };
 
     models.Classification.findAll({
+        // where: {
+        //     tag: 'admin'
+        // },
+        //tableHint: TableHints.NOLOCK,
+        include: [{
+            model: models.Product,
             // where: {
-            //     tag: 'admin'
-            // },
-            //tableHint: TableHints.NOLOCK,
-            order: [
-                // Will escape username and validate DESC against a list of valid direction parameters
-                ['id', 'ASC']
-            ]
-        }).then(function (data) {
+            //     year_birth: 1984
+            // }
+        }],
+        order: [
+            // Will escape username and validate DESC against a list of valid direction parameters
+            ['id', 'ASC']
+        ]
+    }).then(function (data) {
 
-            //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
-            json.data = data;
-            json.code = _err.ALL.KEY
-            json.msg = _err.ALL.VAL
-            res.json(json);
+        json.data = data;
+        json.code = _err.ALL.KEY;
+        json.msg = _err.ALL.VAL;
+        res.json(json);
 
-        })
-        .catch(function (err) {
 
-            console.log(err);
-            json.code = _err.UNSQL.KEY;
-            json.msg = err;
-            logger.error(err);
-            res.json(json);
+    }).catch(function (err) {
 
-        });
+        console.log(err);
+        json.code = _err.UNSQL.KEY;
+        json.msg = err;
+        logger.error(err);
+        res.json(json);
+
+    });
 
 });
 
@@ -95,17 +100,23 @@ router.get('/list', function (req, res) {
     };
 
     var title = 'category-list';
-    var colnames = ['CId', 'CName'];
-   
+    var colnames = ['CId', 'CName','By Product Count'];
+
     models.Classification.findAll({
             // where: {
-            //     tag: 'admin'
-            // },
-            //tableHint: TableHints.NOLOCK,
-            order: [
-                // Will escape username and validate DESC against a list of valid direction parameters
-                ['id', 'ASC']
-            ]
+        //     tag: 'admin'
+        // },
+        //tableHint: TableHints.NOLOCK,
+        include: [{
+            model: models.Product,
+            // where: {
+            //     year_birth: 1984
+            // }
+        }],
+        order: [
+            // Will escape username and validate DESC against a list of valid direction parameters
+            ['id', 'ASC']
+        ]
         }).then(function (data) {
 
             //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
