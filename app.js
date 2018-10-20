@@ -47,7 +47,7 @@ var logs = require('./routes/logs'); //add on 20180520
 var vendor = require('./routes/vendor'); //add on 20180520
 var view = require('./routes/view');
 var product = require('./routes/product');
-var classification = require('./routes/classification');
+var category = require('./routes/category');
 
 app.use('/', index);
 app.use('/index', index);
@@ -63,7 +63,7 @@ app.use('/logs', logs); //add on 20180520
 app.use('/vendor', vendor); //add on 20180520
 app.use('/view', view);
 app.use('/product', product); //20181016
-app.use('/classification', classification); //20181016
+app.use('/category', category); //20181016
 
 // catch 404 and forward to error handler
 app.use(function (err, req, res, next) {

@@ -19,20 +19,11 @@
             <td>
                 <button class="ts primary button">
                     <i class="heart icon"></i>
-                    <%= data[i].PId %>
+                    <%= data[i].CId %>
                 </button>
             </td>
             <td>
-                <%= data[i].PClass %>
-            </td>
-            <td>
-                <%= data[i].PName %>
-            </td>
-            <td>
-                <%= data[i].PSpecification %>
-            </td>
-            <td>
-                <%= data[i].PUnit %>
+                <%= data[i].CName %>
             </td>
         </tr>
         <% } %>
@@ -50,6 +41,7 @@
     var data = <%-stringJson%>;
 
     ts('.ts.sortable.table').tablesort();
+
 </script>
 
 <%- contentFor('css')%>

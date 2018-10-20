@@ -52,15 +52,15 @@ router.get('/all', function (req, res) {
         data: []
     };
 
-    models.Product.findAll(
-        {
+    models.Product.findAll({
             // where: {
             //     tag: 'admin'
             // },
             //tableHint: TableHints.NOLOCK,
             order: [
                 // Will escape username and validate DESC against a list of valid direction parameters
-                ['id', 'ASC']]
+                ['id', 'ASC']
+            ]
         }).then(function (data) {
 
             //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
@@ -82,45 +82,59 @@ router.get('/all', function (req, res) {
 
 });
 
-
 router.get('/list', function (req, res) {
 
-    var title = req.originalUrl + ' running now.';
-    //logger.info(title);
+    logger.info('/all');
 
-    //args ok, do something
-    var myFilepath = json_settings.importpath + 'db.xlsx';
-    var fp_obj = new filepath(myFilepath);
-    if (!fp_obj.isok) {
-        console.log(fp_obj.msg);
-        return;
-    }
+    var keyword = req.params.keyword;
+    //var token = req.params.token; //先不檢查
+    var json = {
+        msg: _err.UN1.VAL,
+        code: _err.UN1.KEY,
+        data: []
+    };
 
-    var workbook = XLSX.readFile(myFilepath);
-    var first_sheet_name = workbook.SheetNames[0];
-    var ws = workbook.Sheets[first_sheet_name];
-    //var mysheet_items = XLSX.utils.sheet_to_csv(ws, { header: 0 });
-    var mysheet_items = XLSX.utils.sheet_to_json(ws, {header: 1});
+    var title = 'product-list';
+    var colnames = ['PId', 'PClass', 'PName','PSpecification','PUnit'];
+   
+    models.Product.findAll({
+            // where: {
+            //     tag: 'admin'
+            // },
+            //tableHint: TableHints.NOLOCK,
+            order: [
+                // Will escape username and validate DESC against a list of valid direction parameters
+                ['id', 'ASC']
+            ]
+        }).then(function (data) {
 
-    //var mysheet_json = XLSX.utils.sheet_to_json(ws, {header: 0});
-    //csv_items = mysheet_items.split('\n');
-    //console.log(mysheet_items);
-    //logger.info(csv_items);
+            //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
+            json.data = data;
+            json.code = _err.ALL.KEY
+            json.msg = _err.ALL.VAL
+            //res.json(json);
 
-    var data = JSON.parse(a2j(mysheet_items));
-    //console.log(data);
-    //logger.info(vendor);
+            res.render('product-list', {
+                title: title,
+                cool: cool(),
+                data: json.data,
+                stringJson: JSON.stringify(json.data),
+                cols: colnames,
+                layout: '_tocas-layout' //指定layout名可不需副名.ejs 
+            });
 
-    var colnames = mysheet_items[0];
-    //console.log(colnames);
-    
-    res.render('product-list', {
-        title: title,
-        cool: cool(),
-        data: data,
-        cols: colnames,
-        layout: '_bs-layout' //指定layout名可不需副名.ejs 
-    });
+        })
+        .catch(function (err) {
+
+            console.log(err);
+            json.code = _err.UNSQL.KEY;
+            json.msg = err;
+            logger.error(err);
+            //res.json(json);
+
+        });
+
+
 
 });
 

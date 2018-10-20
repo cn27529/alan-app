@@ -20,11 +20,11 @@ router.get('/', function (req, res) {
     var title = req.originalUrl + ' running now.';
     logger.info(title);
 
-    res.render('index', {
+    res.render('home', {
         title: title,
         cool: cool(),
         // items: [1991, 'byvoid', 'express', 'Node.js']
-        layout: "_bs-layout"
+        layout: "_tocas-layout"
     });
 
     //next();
