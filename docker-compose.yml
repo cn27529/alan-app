@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  alan-app:
+    image: alan-app
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8080:8080
