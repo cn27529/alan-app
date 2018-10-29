@@ -10,6 +10,7 @@
     "start": "node index.js dev"
   },
   "dependencies": {
+    "aws-sdk": "^2.342.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",

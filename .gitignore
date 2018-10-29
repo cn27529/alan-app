@@ -1,6 +1,8 @@
-node_modules
 npm-debug.log
 .bash_profile
 logs
 package-lock.json
 robots.txt
+node_modules/
+.elasticbeanstalk/
+
