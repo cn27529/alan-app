@@ -94,8 +94,8 @@ router.get('/list', function (req, res) {
         data: []
     };
 
-    var title = 'vendor-list';
-    var colnames = ['SId', 'SName','STel','SFax','SAddress'];
+    var title = '所有供應商清單';
+    var colnames = ['名稱', '電話','傳真','地址'];
    
     models.supplier.findAll({
             // where: {
@@ -114,7 +114,7 @@ router.get('/list', function (req, res) {
             json.msg = _err.ALL.VAL;
             //res.json(json);
 
-            res.render('vendor-list2', {
+            res.render('vendor-list2', { //modify 20181020
                 title: title,
                 cool: cool(),
                 data: json.data,

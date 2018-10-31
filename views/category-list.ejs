@@ -41,35 +41,44 @@
 </table> -->
 
 <div class="ts cards">
-        <% for(var i=0; i< data.length; i++) { %>
+    <% for(var i=0; i< data.length; i++) { %>
 
-            <div class="ts primary card">
+    <div class="ts primary card">
 
-                    <div class="content">
-                        
-                        <a class="header" href="../product/bycategory/<%= data[i].CId %>">
-                            </a>
+        <div class="content">
+            <a class="header" href="../product/bycategory/<%= data[i].CId %>">
+            </a>
+            <% if (data[i].Products.length > 0) { %>
+                <a class="description" href="../product/bycategory/<%= data[i].CId %>">
+                <button class="ts primary button">
+                    <% } else { %>
+                <a class="description" href="#!"></a>
+                <button class="ts primary button" id="btn-<%= data[i].CId %>" onclick="testAnim(this.id, 'shake')">
+                        <script>
+                            function testAnim(eleid, x) {
+                                var css = 'shake animated';
+                                $('#' + eleid).removeClass().addClass('ts primary button ' + x + ' animated').one(
+                                    'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                                    function () {
+                                        $(this).removeClass().addClass('ts primary button')
+                                    });
+                            }
+                        </script>
+                        <% } %>
 
-                            <% if (data[i].Products.length > 0) { %>
-                                <a class="description" href="../product/bycategory/<%= data[i].CId %>">
-                                <% } else { %>
-                                    <a class="description" href="#!"></a>
-                                    <% } %>
-                        
-                               
-                        <button class="ts primary button"><%= data[i].CName %>&nbsp;&nbsp;的分類產品
+                        <%= data[i].CName %>&nbsp;&nbsp;
 
-                            <div class="ts floating circular label">
-                                    <%= data[i].Products.length %>
-                            </div>
-                        </button>
-                        
-                        </a>
-                    </div>
-                </div>
+                        <div class="ts floating circular label">
+                            <%= data[i].Products.length %>
+                        </div>
+                    </button>
 
-            <% } %>
-        
+            </a>
+        </div>
+    </div>
+
+    <% } %>
+
 </div>
 
 <%- contentFor('js')%>
@@ -78,7 +87,6 @@
     var data = <%-stringJson%>;
 
     ts('.ts.sortable.table').tablesort();
-
 </script>
 
 <%- contentFor('css')%>

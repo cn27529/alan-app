@@ -99,7 +99,7 @@ router.get('/list', function (req, res) {
         data: []
     };
 
-    var title = 'category-list';
+    var title = '所有分類項';
     var colnames = ['CId', 'CName','By Product Count'];
 
     models.Classification.findAll({

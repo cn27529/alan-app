@@ -44,7 +44,6 @@ var cool = require('./routes/cool');
 var callposg = require('./routes/callposg');
 var admin = require('./routes/admin');
 var logs = require('./routes/logs'); //add on 20180520
-//var vendor = require('./routes/vendor'); //add on 20180520
 var vendor = require('./routes/vendor2'); //modify on 20181020
 var view = require('./routes/view');
 var product = require('./routes/product');

@@ -94,14 +94,20 @@ router.get('/list', function (req, res) {
         data: []
     };
 
-    var title = 'product-list';
-    var colnames = ['PId', 'PClass', 'PName', 'PSpecification', 'PUnit'];
+    var title = '所有產品清單';
+    var colnames = ['產品', '分類',  '重', '單位'];
 
     models.Product.findAll({
             // where: {
             //     tag: 'admin'
             // },
             //tableHint: TableHints.NOLOCK,
+            include: [{
+                model: models.Classification,
+                // where: {
+                //     year_birth: 1984
+                // }
+            }],
             order: [
                 // Will escape username and validate DESC against a list of valid direction parameters
                 ['id', 'ASC']
@@ -110,8 +116,8 @@ router.get('/list', function (req, res) {
 
             //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
             json.data = data;
-            json.code = _err.ALL.KEY
-            json.msg = _err.ALL.VAL
+            json.code = _err.ALL.KEY;
+            json.msg = _err.ALL.VAL;
             //res.json(json);
 
             res.render('product-list', {
@@ -153,15 +159,21 @@ router.get('/bycategory/:v', function (req, res) {
         data: []
     };
 
-    var title = 'product-list';
-    if (value !== '') title = 'view product by category';
-    var colnames = ['PId', 'PClass', 'PName', 'PSpecification', 'PUnit'];
+    var title = '所有'+value+'產品';
+    if (value !== '') title = '所有'+value+'產品';
+    var colnames = ['產品', '分類',  '重', '單位'];
 
     models.Product.findAll({
             where: {
                 PClass: value
             },
             //tableHint: TableHints.NOLOCK,
+            include: [{
+                model: models.Classification,
+                // where: {
+                //     year_birth: 1984
+                // }
+            }],
             order: [
                 // Will escape username and validate DESC against a list of valid direction parameters
                 ['id', 'ASC']
