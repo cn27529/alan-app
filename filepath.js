@@ -22,7 +22,7 @@ function filepath(file_path) {
 
     this.setPath = function (file_path) {
         init(file_path, this);
-    }
+    };
 
 }
 
