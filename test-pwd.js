@@ -36,5 +36,4 @@ var info = {
     decode: decode_str
 }
 logger.info(info);
-
 //console.log(pw)
