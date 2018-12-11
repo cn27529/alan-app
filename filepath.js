@@ -13,7 +13,7 @@ function filepath(file_path) {
     function init(file_path, me) {
         try {
             me.info = fs.statSync(file_path);
-            me.isok = true;            
+            me.isok = true;
         } catch (ex) {
             me.isok = false;
             me.msg = '檔案不存在';
