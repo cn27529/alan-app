@@ -23,7 +23,7 @@ var models = require('../models');
 
 router.get('/', function (req, res) {
 
-    var title = req.originalUrl + ' running now.';
+    var title = req.originalUrl + '';
     logger.info(title);
 
     var myFolder = './xlsx-import-files';
@@ -35,7 +35,7 @@ router.get('/', function (req, res) {
         title: title,
         cool: cool(),
         data: returnFiles,
-        layout: '_bs-layout' //指定layout名可不需副名.ejs 
+        layout: '_tocas-layout' //指定layout名可不需副名.ejs 
     });
 
 });
@@ -43,6 +43,7 @@ router.get('/', function (req, res) {
 router.get('/all', function (req, res) {
 
     logger.info('/all');
+    var title = req.originalUrl + '';
 
     var keyword = req.params.keyword;
     //var token = req.params.token; //先不檢查
@@ -94,7 +95,8 @@ router.get('/list', function (req, res) {
         data: []
     };
 
-    var title = '所有產品清單';
+    //var title = '所有產品清單';
+    var title = req.originalUrl + '';
     var colnames = ['產品', '分類',  '重', '單位'];
 
     models.Product.findAll({
@@ -159,7 +161,8 @@ router.get('/bycategory/:v', function (req, res) {
         data: []
     };
 
-    var title = '所有'+value+'產品';
+    //var title = '所有'+value+'產品';
+    var title = req.originalUrl + '';
     if (value !== '') title = '所有'+value+'產品';
     var colnames = ['產品', '分類',  '重', '單位'];
 
@@ -212,7 +215,8 @@ router.get('/bycategory/:v', function (req, res) {
 
 router.get('/info/:filename', function (req, res) {
 
-    var title = '/:filename running now.';
+    //var title = '/:filename running now.';
+    var title = req.originalUrl + '';
     logger.info(title);
 
     var filename = req.param.filename;
@@ -221,8 +225,8 @@ router.get('/info/:filename', function (req, res) {
     res.render('vendorinfo', {
         title: title,
         cool: cool(),
-        data: content
-        //layout: "_layout"
+        data: content,
+        layout: "_tocas-layout"
     });
 
 });

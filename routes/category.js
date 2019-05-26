@@ -23,7 +23,7 @@ var models = require('../models');
 
 router.get('/', function (req, res) {
 
-    var title = req.originalUrl + ' running now.';
+    var title = req.originalUrl + '';
     logger.info(title);
 
     var myFolder = './xlsx-import-files';
@@ -99,7 +99,8 @@ router.get('/list', function (req, res) {
         data: []
     };
 
-    var title = '所有分類項';
+    //var title = '所有分類項';
+    var title = req.originalUrl + '';
     var colnames = ['CId', 'CName','By Product Count'];
 
     models.Classification.findAll({
@@ -151,7 +152,8 @@ router.get('/list', function (req, res) {
 
 router.get('/info/:filename', function (req, res) {
 
-    var title = '/:filename running now.';
+    //var title = '/:filename running now.';
+    var title = req.originalUrl + '';
     logger.info(title);
 
     var filename = req.param.filename;

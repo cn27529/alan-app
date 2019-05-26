@@ -20,7 +20,7 @@ var _FAFWork = new FAFWork();
 
 router.get('/', function (req, res) {
 
-    var title = req.originalUrl + ' running now.';
+    var title = req.originalUrl + '';
     logger.info(title);
 
     var myFolder = './xlsx-import-files';
@@ -39,7 +39,7 @@ router.get('/', function (req, res) {
 
 router.get('/list', function (req, res) {
 
-    var title = req.originalUrl + ' running now.';
+    var title = req.originalUrl + '';
     //logger.info(title);
 
     //args ok, do something

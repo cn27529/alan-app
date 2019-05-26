@@ -17,27 +17,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/animate.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 </head>
 
 <body>
     <div class="ts narrow container">
-        <div></div>
         <!--標題-->
-        <div class="ts segment">
+        <div id="app_path" class="ts segment">
             <div class="ts center aligned four column grid">
                 <div class="left aligned two column row">
                     <div class="column">
-                            <div class="ts large breadcrumb">
-                                    <a class="section" href="#">首頁</a>
-                                    <i class="right chevron icon divider"></i>
-                                    <a class="section">
-                                            <%=title%>
-                                    </a>
-                                </div>
-                        
+                        <div class="ts large breadcrumb" v-for="(item, index) in mypath">
+                            <i class="right chevron icon divider"></i>
+                            <a v-if="item === '/'" class="section" :href="'/'">home</a>
+                            <a v-else class="section" :href="'/'+item">{{item}}</a>
+                        </div>
                     </div>
                     <div class="right aligned column">
-                        <%=cool%>
+                        {{cool}}
                     </div>
                 </div>
             </div>
@@ -49,6 +46,42 @@
 </body>
 
 <%- js%>
+<script>
+    //app-breadcrumb
+    var app_path = new Vue({
+        el: '#app_path',
+        data: {
+            cool: '<%=cool%>',
+            title: '<%=title%>',
+            loading: false,
+            mypath: [],
+        },
+        mounted: function () {
+            //order by apiName
+            var data = this.title.split('/');
+            //this.mypath = data;
+            //this.mypath = data.filter(function (item, index, arr) {
+            //    return item !== '';
+            //});
+
+            this.mypath = data.map(function (item, index, array) {
+                if (item === '') 
+                    return '/';
+                else
+                    return item;
+            });
+
+        },
+        created: function () {
+            // `this` points to the vm instance
+
+        },
+        //el methods
+        methods: {
+
+        },
+    })
+</script>
 
 <%- css%>
 

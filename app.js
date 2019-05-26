@@ -39,6 +39,7 @@ var account = require('./routes/account');
 var member = require('./routes/member');
 var random = require('./routes/random');
 var index = require('./routes/index');
+var home = require('./routes/home');
 var posg = require('./routes/posg');
 var cool = require('./routes/cool');
 var callposg = require('./routes/callposg');
@@ -48,10 +49,11 @@ var vendor = require('./routes/vendor2'); //modify on 20181020
 var view = require('./routes/view');
 var product = require('./routes/product');
 var category = require('./routes/category');
+var shipment = require('./routes/shipment');
 
-app.use('/', index);
+app.use('/', home);
 app.use('/index', index);
-app.use('/home', index);
+app.use('/home', home);
 app.use('/posg', posg);
 app.use('/account', account);
 app.use('/member', member);
@@ -64,6 +66,7 @@ app.use('/vendor', vendor); //add on 20180520
 app.use('/view', view);
 app.use('/product', product); //20181016
 app.use('/category', category); //20181016
+app.use('/shipment', shipment); //20181016
 
 // catch 404 and forward to error handler
 app.use(function (err, req, res, next) {
