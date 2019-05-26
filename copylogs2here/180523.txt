@@ -1,8 +1,0 @@
-[2018-05-23T05:26:29.336] [INFO] ./works/CallposgWork - { uri: 'http://114.34.37.18:9000/API/GetMember?MobilPhone=0909-111222',
-  method: 'GET',
-  timeout: 10000,
-  followRedirect: true,
-  maxRedirects: 10 }
-[2018-05-23T05:26:30.104] [INFO] ./works/CallposgWork - {"code":"0000","message":"SUCCESS","result":{"mobilphone":"0909-111222","memberid":"0000003","bonus":"123.00"}}
-[2018-05-23T08:31:51.789] [INFO] ./model/index - env run for production, connection database is cycoholic
-[2018-05-23T08:31:55.984] [INFO] ./run - Node app is running on port 8080
