@@ -89,11 +89,29 @@ app.use(function(err, req, res, next) {
   logger.error(err);
   res.status(err.status || 500);
   
-  res.json({
-    msg: err.message,
-    err: app.get('env') === 'development' ? err : {}
+  // res.json({
+  //   msg: err.message,
+  //   err: app.get('env') === 'development' ? err : {}
+  // });
+
+  // // set locals, only providing error in development
+  // res.locals.message = err.message;
+  // res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  
+  // render the error page
+  var title = req.originalUrl + '';
+
+  res.render('error', {
+    title: title,
+    cool: cool(),
+    error: req.app.get('env') === 'development' ? err : '',
+    message: err.message,
+    layout: '_tocas-layout'
   });
+  //end
 
 });
+
 
 module.exports = app;
