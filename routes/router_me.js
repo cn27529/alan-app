@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 var cool = require('cool-ascii-faces');
 
-var logger = require('../logConfig').logger('router_next', 'debug');
+var logger = require('../logConfig').logger('router_me', 'debug');
+
+
+//https://ithelp.ithome.com.tw/articles/10202754
+//https://expressjs.com/zh-cn/guide/using-middleware.html
+//https://blog.gtwang.org/programming/learn-to-use-the-new-router-in-expressjs-4/
 
 //請求路由時，會經過它
 router.use(function(req, res, next) {

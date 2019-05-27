@@ -1,7 +1,7 @@
 //var models = require('../models');
 var express = require('express');
 //var router = express.Router();
-var router = require('../routes/router_next');
+var router = require('../routes/router_me');
 var cool = require('cool-ascii-faces');
 
 var logpath = './routes/home';
