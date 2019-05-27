@@ -15,8 +15,6 @@ router.use(function(req,res,next){
     next();
 });
 
-
-
 router.get('/', function (req, res) {
 
     var title = req.originalUrl + '';
