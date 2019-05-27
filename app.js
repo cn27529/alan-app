@@ -46,7 +46,7 @@ var posg = require('./routes/posg');
 var account = require('./routes/account');
 var member = require('./routes/member');
 var random = require('./routes/random');
-var cool = require('./routes/cool');
+//var cool = require('./routes/cool');
 var callposg = require('./routes/callposg');
 var admin = require('./routes/admin');
 var logs = require('./routes/logs'); //add on 20180520
@@ -56,6 +56,7 @@ var product = require('./routes/product');
 var category = require('./routes/category');
 var shipment = require('./routes/shipment');
 
+
 app.use('/', home);
 app.use('/test', test);
 app.use('/index', index);
@@ -64,7 +65,7 @@ app.use('/posg', posg);
 app.use('/account', account);
 app.use('/member', member);
 app.use('/random', random);
-app.use('/cool', cool);
+//app.use('/cool', cool);
 app.use('/callposg', callposg);
 app.use('/admin', admin);
 app.use('/logs', logs); //add on 20180520
@@ -87,10 +88,12 @@ app.use(function(err, req, res, next) {
 app.use(function(err, req, res, next) {
   logger.error(err);
   res.status(err.status || 500);
+  
   res.json({
     msg: err.message,
     err: app.get('env') === 'development' ? err : {}
   });
+
 });
 
 module.exports = app;

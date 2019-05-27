@@ -5,7 +5,7 @@ var fs = require('fs');
 var uuid = require('uuid/v4');
 var path = require('path');
 
-var logpath = './routes/vendor';
+var logpath = './routes/product';
 var logger = require('../logConfig').logger(logpath, 'debug');
 
 var XLSX = require('xlsx');
