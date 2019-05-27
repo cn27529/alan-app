@@ -1,25 +1,23 @@
 //var models = require('../models');
 var express = require('express');
 //var router = express.Router();
-var router = require('../routes/router_next');
 var cool = require('cool-ascii-faces');
 
-var logpath = './routes/home';
+var router = require('../routes/router_next');
+
+var logpath = './routes/test';
 var logger = require('../logConfig').logger(logpath, 'debug');
 
-router.get('/', function(req, res) {
-  //
+router.get('/', function(req, res, next) {
+  //call router_next middleware
   var title = req.originalUrl + '';
-  //logger.info(title);
 
-  res.render('home', {
+  res.render('index', {
     title: title,
     cool: cool(),
-    // items: [1991, 'byvoid', 'express', 'Node.js']
     layout: '_tocas-layout'
   });
-
-  //next();
+  //end
 });
 
 module.exports = router;

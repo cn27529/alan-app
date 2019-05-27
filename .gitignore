@@ -6,4 +6,4 @@ package-lock.json
 robots.txt
 node_modules/
 .elasticbeanstalk/
-
+*.log
