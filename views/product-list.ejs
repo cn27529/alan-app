@@ -1,58 +1,56 @@
 <%- contentFor('body')%>
 <script>
-    //alert('contentFor("body")');
+  //alert('contentFor("body")');
 </script>
 
 <table class="ts sortable padded large table">
-    <thead>
-        <tr>
-            <% for(var i=0; i< cols.length; i++) { %>
-            <th>
-                <%= cols[i] %>
-            </th>
-            <% } %>
-        </tr>
-    </thead>
-    <tbody>
-        <% for(var i=0; i< data.length; i++) { %>
-        <tr>
-            <td>
-                <button class="ts primary button">
-                    <i class="heart icon"></i>
-                    <%= data[i].PName %>
-                </button>
-            </td>
-            <td>
-                <%= data[i].Classification.CName %>
-            </td>
-            <td>
-                <%= data[i].PSpecification %>
-            </td>
-            <td>
-                <%= data[i].PUnit %>
-            </td>
-        </tr>
-        <% } %>
-    </tbody>
-    <tfoot>
-        <tr>
-            <th colspan="5">未到人數：3</th>
-        </tr>
-    </tfoot>
+  <thead>
+    <tr>
+      <% for(var i=0; i< cols.length; i++) { %>
+      <th>
+        <%= cols[i] %>
+      </th>
+      <% } %>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(var i=0; i< data.length; i++) { %>
+    <tr>
+      <td>
+        <button class="ts primary button">
+          <i class="heart icon"></i>
+          <%= data[i].PName %>
+        </button>
+      </td>
+      <td>
+        <%= data[i].Classification.CName %>
+      </td>
+      <td>
+        <%= data[i].PSpecification %>
+      </td>
+      <td>
+        <%= data[i].PUnit %>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="5">未到人數：3</th>
+    </tr>
+  </tfoot>
 </table>
 
 <%- contentFor('js')%>
 <script>
-    //alert('contentFor("js")');
-    var data = <%-stringJson%>;
+  //alert('contentFor("js")');
+  var data = <%-stringJson%>;
 
-    ts('.ts.sortable.table').tablesort();
+  ts('.ts.sortable.table').tablesort();
 </script>
 
 <%- contentFor('css')%>
 <script>
-    //alert('contentFor("css")');
+  //alert('contentFor("css")');
 </script>
-<style>
-
-</style>
+<style></style>
