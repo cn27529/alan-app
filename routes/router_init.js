@@ -15,7 +15,7 @@ router.use(function(req, res, next) {
   // logger.info('req.baseUrl=' + req.baseUrl);
   logger.info('req.method=' + req.method);
   logger.info('req.url=' + req.url);
-  // logger.info('req.path=' + req.path);
+  logger.info('req.path=' + req.path);
   // logger.info('req.route=' + req.route);
   // logger.info('req.protocol=' + req.protocol);
   // logger.info('req.params=' + JSON.stringify(req.params));
