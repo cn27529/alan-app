@@ -26,7 +26,9 @@ router.use(function(req, res, next) {
   console.log(req.method, req.url);
 
   next();
-
 });
+
+// 將路由套用至應用程式
+//router.use('/', router);
 
 module.exports = router;

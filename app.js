@@ -39,6 +39,8 @@ app.set('view engine', 'ejs'); //表明要使用的模板引擎
 app.use(expressLayouts);
 //app.set("layoutextractScripts", true)
 
+var router_init = require('./routes/router_init');
+var router_error = require('./routes/router_error');
 var test = require('./routes/test');
 var index = require('./routes/index');
 var home = require('./routes/home');
@@ -56,7 +58,8 @@ var product = require('./routes/product');
 var category = require('./routes/category');
 var shipment = require('./routes/shipment');
 
-
+app.use(router_init); //on init router
+//
 app.use('/', home);
 app.use('/test', test);
 app.use('/index', index);
@@ -75,43 +78,41 @@ app.use('/product', product); //20181016
 app.use('/category', category); //20181016
 app.use('/shipment', shipment); //20181016
 
-// catch 404 and forward to error handler
-app.use(function(err, req, res, next) {
-  res.status(404);
-  //next(err); res.render('error', {err: err});
-  console.log(err);
-  logger.error(err);
-  res.end();
-});
+app.use(router_error);
+// // catch 404 and forward to error handler
+// app.use(function(err, req, res, next) {
+//   res.status(404);
+//   //next(err); res.render('error', {err: err});
+//   console.log(err);
+//   logger.error(err);
+//   res.end();
+// });
 
-// error handler no stacktraces leaked to user unless in development environment
-app.use(function(err, req, res, next) {
-  logger.error(err);
-  res.status(err.status || 500);
-  
-  // res.json({
-  //   msg: err.message,
-  //   err: app.get('env') === 'development' ? err : {}
-  // });
+// // error handler no stacktraces leaked to user unless in development environment
+// app.use(function(err, req, res, next) {
+//   logger.error(err);
+//   res.status(err.status || 500);
 
-  // // set locals, only providing error in development
-  // res.locals.message = err.message;
-  // res.locals.error = req.app.get('env') === 'development' ? err : {};
+//   // res.json({
+//   //   msg: err.message,
+//   //   err: app.get('env') === 'development' ? err : {}
+//   // });
 
-  
-  // render the error page
-  var title = req.originalUrl + '';
+//   // // set locals, only providing error in development
+//   // res.locals.message = err.message;
+//   // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  res.render('error', {
-    title: title,
-    cool: cool(),
-    error: req.app.get('env') === 'development' ? err : '',
-    message: err.message,
-    layout: '_tocas-layout'
-  });
-  //end
+//   // render the error page
+//   var title = req.originalUrl + '';
 
-});
-
+//   res.render('error', {
+//     title: title,
+//     cool: cool(),
+//     error: req.app.get('env') === 'development' ? err : '',
+//     message: err.message,
+//     layout: '_tocas-layout'
+//   });
+//   //end
+// });
 
 module.exports = app;

@@ -1,9 +1,7 @@
 //var models = require('../models');
 var express = require('express');
-//var router = express.Router();
+var router = express.Router();
 var cool = require('cool-ascii-faces');
-
-var router = require('./router_use');
 
 var logpath = './routes/test';
 var logger = require('../logConfig').logger(logpath, 'debug');

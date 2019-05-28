@@ -1,7 +1,7 @@
 <!-- http://cythilya.blogspot.tw/2015/02/bootstrap-rwd-template.html -->
 
 <%- contentFor('body')%>
-<div id="app_test">
+<div id="app">
   <h1>
     {{ cool }}
   </h1>
@@ -15,8 +15,8 @@
 
 <%- contentFor('js')%>
 <script>
-  var app_test = new Vue({
-    el: '#app_test',
+  var app = new Vue({
+    el: '#app',
     data: {
       cool: '<%=cool%>',
       title: '<%=title%>',

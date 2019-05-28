@@ -2,7 +2,6 @@
 var express = require('express');
 var cool = require('cool-ascii-faces');
 var router = express.Router();
-//var router = require('../routes/router_use');
 
 var logpath = './routes/home';
 var logger = require('../logConfig').logger(logpath, 'debug');
