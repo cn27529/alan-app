@@ -12,42 +12,38 @@ var logger = require('../logConfig').logger(logpath, 'debug');
 var FAFWork = require('../works/FAFWork');
 var _FAFWork = new FAFWork();
 
-//文件 https://cn27529.gitbooks.io/cycoholic-api/content/logs.html
+//文件 https://cn27529.gitbooks.io/alan-app/content/logs.html
 
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
+  var title = 'logs-api running now.';
+  logger.info(title);
 
-    var title = 'logs-api running now.';
-    logger.info(title);
+  var myFolder = './logs/';
+  var folderFiles = _FAFWork.getFolderFiles(myFolder);
+  var returnFiles = _FAFWork.getReturnFiles(folderFiles, myFolder);
+  //console.log(returnFiles)
 
-    var myFolder = './logs/';
-    var folderFiles = _FAFWork.getFolderFiles(myFolder);
-    var returnFiles = _FAFWork.getReturnFiles(folderFiles, myFolder);
-    //console.log(returnFiles)
-
-    res.render('logs', {
-        title: title,
-        cool: cool(),
-        data: returnFiles,
-        layout: '_bs-layout' //指定layout名可不需副名.ejs 
-    });
-
+  res.render('logs', {
+    title: title,
+    cool: cool(),
+    data: returnFiles,
+    layout: '_bs-layout' //指定layout名可不需副名.ejs
+  });
 });
 
-router.get('/:filename', function (req, res) {
+router.get('/:filename', function(req, res) {
+  var title = '/:filename running now.';
+  logger.info(title);
 
-    var title = '/:filename running now.';
-    logger.info(title);
+  var filename = req.param.filename;
+  var content = '';
 
-    var filename = req.param.filename;
-    var content = '';
-
-    res.render('logs', {
-        title: title,
-        cool: cool(),
-        data: content,
-        layout: '_bs-layout' //指定layout名可不需副名.ejs 
-    });
-
+  res.render('logs', {
+    title: title,
+    cool: cool(),
+    data: content,
+    layout: '_bs-layout' //指定layout名可不需副名.ejs
+  });
 });
 
 module.exports = router;

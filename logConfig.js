@@ -50,6 +50,6 @@ exports.use = function(app, level) {
       //格式化http相关信息
       format: ':method :url :status'
     })
-    );
-    //
+  );
+  //
 };

@@ -5,13 +5,13 @@
 var args = require('./args');
 var filepath = require('./filepath');
 var XLSX = require('xlsx');
-var json_settings = require("../data/settings.json");
+var json_settings = require('../data/settings.json');
 
 var arg_obj = new args(); //參數物件
 
 if (!arg_obj.isok) {
-    console.log(arg_obj.msg);
-    return;
+  console.log(arg_obj.msg);
+  return;
 }
 
 //args ok, do something
@@ -19,8 +19,8 @@ var myFilepath = json_settings.importpath + arg_obj.filename;
 var fp_obj = new filepath(myFilepath);
 //var fp_obj = new filepath(); fp_obj.setPath(myFilepath);
 if (!fp_obj.isok) {
-    console.log(fp_obj.msg);
-    return;
+  console.log(fp_obj.msg);
+  return;
 }
 //console.log(fp_obj);
 
@@ -54,36 +54,41 @@ mysheet.data = mysheet_items;
 
 //console.log(mysheet);
 
-mysheet_items.map(function (value, index) {
-    var obj = value;
+mysheet_items.map(function(value, index) {
+  var obj = value;
+  //console.log(obj);
+  if (obj.買受人名稱 !== undefined) {
     //console.log(obj);
-    if (obj.買受人名稱 !== undefined) {
-        //console.log(obj);
-    }
+  }
 
-    if (obj.下單日期 !== undefined) {
-        var d = new Date(obj.下單日期);
-        //var d = Date.parse(obj.下單日期);
-        //console.log(d);
-        //var n = d.toString();
-        var n = d.toISOString().slice(0,10).replace(/-/g,"/");
-        obj.下單日期 = n;
-        //console.log(n);
-        //console.log(obj);
-    }
+  if (obj.下單日期 !== undefined) {
+    var d = new Date(obj.下單日期);
+    //var d = Date.parse(obj.下單日期);
+    //console.log(d);
+    //var n = d.toString();
+    var n = d
+      .toISOString()
+      .slice(0, 10)
+      .replace(/-/g, '/');
+    obj.下單日期 = n;
+    //console.log(n);
+    //console.log(obj);
+  }
 
-    if (obj.收入日期 !== undefined) {
-        var d = new Date(obj.收入日期);
-        //var d = Date.parse(obj.下單日期);
-        //console.log(d);
-        //var n = d.toString();
-        var n = d.toISOString().slice(0,10).replace(/-/g,"/");
-        obj.收入日期 = n;
-        //console.log(n);
-        //console.log(obj);
-    }
-
-})
+  if (obj.收入日期 !== undefined) {
+    var d = new Date(obj.收入日期);
+    //var d = Date.parse(obj.下單日期);
+    //console.log(d);
+    //var n = d.toString();
+    var n = d
+      .toISOString()
+      .slice(0, 10)
+      .replace(/-/g, '/');
+    obj.收入日期 = n;
+    //console.log(n);
+    //console.log(obj);
+  }
+});
 
 console.log(mysheet_items);
 
@@ -97,8 +102,3 @@ console.log(mysheet_items);
 //   //stream.write("My second row\n");
 //   stream.end();
 // });
-
-
-
-
-

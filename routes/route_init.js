@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var cool = require('cool-ascii-faces');
 
-var logger = require('../logConfig').logger('router_use', 'debug');
+var logger = require('../logConfig').logger('route_init', 'debug');
 
 //https://ithelp.ithome.com.tw/articles/10202754
 //https://expressjs.com/zh-cn/guide/using-middleware.html
@@ -11,11 +11,11 @@ var logger = require('../logConfig').logger('router_use', 'debug');
 //請求路由時，會經過它
 router.use(function(req, res, next) {
   //
-  logger.info('req.originalUrl=' + req.originalUrl);
+  //logger.info('req.originalUrl=' + req.originalUrl);
   // logger.info('req.baseUrl=' + req.baseUrl);
-  logger.info('req.method=' + req.method);
-  logger.info('req.url=' + req.url);
-  logger.info('req.path=' + req.path);
+  //logger.info('req.method=' + req.method);
+  //logger.info('req.url=' + req.url);
+  //logger.info('req.path=' + req.path);
   // logger.info('req.route=' + req.route);
   // logger.info('req.protocol=' + req.protocol);
   // logger.info('req.params=' + JSON.stringify(req.params));
@@ -23,7 +23,10 @@ router.use(function(req, res, next) {
   // logger.info('req.subdomains=' + JSON.stringify(req.subdomains));
   // logger.info('req.xhr=' + JSON.stringify(req.xhr));
 
-  console.log(req.method, req.url);
+  console.log('req.method=', req.method);
+  console.log('req.url=', req.url);
+  console.log('req.path=', req.path);
+  console.log('req.originalUrl=', req.originalUrl);
 
   next();
 });

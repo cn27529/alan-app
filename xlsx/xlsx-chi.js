@@ -4,13 +4,13 @@
 var args = require('./args');
 var filepath = require('./filepath');
 var XLSX = require('xlsx');
-var json_settings = require("../data/settings.json");
+var json_settings = require('../data/settings.json');
 
 var arg_obj = new args(); //參數物件
 
 if (!arg_obj.isok) {
-    console.log(arg_obj.msg);
-    return;
+  console.log(arg_obj.msg);
+  return;
 }
 
 //args ok, do something
@@ -35,11 +35,11 @@ var ws = workbook.Sheets[first_sheet_name];
 //console.log(ws);
 
 //var mysheet = XLSX.utils.sheet_to_formulae(ws);
-var mysheet_items = XLSX.utils.sheet_to_json(ws, {header:0, raw:true});
+var mysheet_items = XLSX.utils.sheet_to_json(ws, { header: 0, raw: true });
 //var mysheet_items = XLSX.utils.sheet_to_json(ws, { header: 1 });
 //var mysheet_items = XLSX.utils.sheet_to_csv(ws, {header:0, raw:true});
 console.log(mysheet_items);
-//console.log(JSON.stringify(mysheet_items[0])); 
+//console.log(JSON.stringify(mysheet_items[0]));
 return;
 
 var mysheet = {};
@@ -48,36 +48,41 @@ mysheet.data = mysheet_items;
 
 //console.log(mysheet);
 
-mysheet_items.map(function (value, index) {
-    var obj = value;
+mysheet_items.map(function(value, index) {
+  var obj = value;
+  //console.log(obj);
+  if (obj.買受人名稱 !== undefined) {
     //console.log(obj);
-    if (obj.買受人名稱 !== undefined) {
-        //console.log(obj);
-    }
+  }
 
-    if (obj.下單日期 !== undefined) {
-        var d = new Date(obj.下單日期);
-        //var d = Date.parse(obj.下單日期);
-        //console.log(d);
-        //var n = d.toString();
-        var n = d.toISOString().slice(0,10).replace(/-/g,"/");
-        obj.下單日期 = n;
-        //console.log(n);
-        //console.log(obj);
-    }
+  if (obj.下單日期 !== undefined) {
+    var d = new Date(obj.下單日期);
+    //var d = Date.parse(obj.下單日期);
+    //console.log(d);
+    //var n = d.toString();
+    var n = d
+      .toISOString()
+      .slice(0, 10)
+      .replace(/-/g, '/');
+    obj.下單日期 = n;
+    //console.log(n);
+    //console.log(obj);
+  }
 
-    if (obj.收入日期 !== undefined) {
-        var d = new Date(obj.收入日期);
-        //var d = Date.parse(obj.下單日期);
-        //console.log(d);
-        //var n = d.toString();
-        var n = d.toISOString().slice(0,10).replace(/-/g,"/");
-        obj.收入日期 = n;
-        //console.log(n);
-        //console.log(obj);
-    }
-
-})
+  if (obj.收入日期 !== undefined) {
+    var d = new Date(obj.收入日期);
+    //var d = Date.parse(obj.下單日期);
+    //console.log(d);
+    //var n = d.toString();
+    var n = d
+      .toISOString()
+      .slice(0, 10)
+      .replace(/-/g, '/');
+    obj.收入日期 = n;
+    //console.log(n);
+    //console.log(obj);
+  }
+});
 
 console.log(mysheet_items);
 
@@ -91,8 +96,3 @@ console.log(mysheet_items);
 //   //stream.write("My second row\n");
 //   stream.end();
 // });
-
-
-
-
-

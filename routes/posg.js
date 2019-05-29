@@ -22,7 +22,7 @@ var _callposg = new CallposgWork()
 var logpath = './routes/posg';
 var logger = require('../logConfig').logger(logpath, 'debug');
 
-//文件 https://cn27529.gitbooks.io/cycoholic-api/content/posg.html
+//文件 https://cn27529.gitbooks.io/alan-app/content/posg.html
 
 router.get('/', function (req, res) {
 

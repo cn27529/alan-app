@@ -3,8 +3,7 @@
 //   console.log(index + ': ' + val);
 // });
 
-var myargs = function () {
-
+var myargs = function() {
   const args = process.argv;
   //console.log(args);
   //console.log(args.length);
@@ -17,15 +16,12 @@ var myargs = function () {
   if (args_len !== 3) {
     //console.log('沒有指定檔案名稱, 例: node xlsx.js 檔案名稱.xlsx');
     this.msg = '沒有指定檔案名稱, 例: node xlsx.js 檔案名稱.xlsx';
-  }
-  else {
+  } else {
     this.isok = true;
     //console.log('檔案名稱: ' + args[2]);
     this.msg = '檔案名稱: ' + args[2];
     this.filename = args[2];
   }
-
-
-}
+};
 
 module.exports = myargs;

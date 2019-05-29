@@ -18,7 +18,7 @@ var _config = new ConfigSettingWork()
 var CallposgWork = require('../works/CallposgWork')
 var _callposg = new CallposgWork()
 
-//文件 https://cn27529.gitbooks.io/cycoholic-api/content/admin.html
+//文件 https://cn27529.gitbooks.io/alan-app/content/admin.html
 
 var logpath = './routes/admin';
 var logger = require('../logConfig').logger(logpath, 'debug');

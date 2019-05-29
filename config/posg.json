@@ -21,10 +21,10 @@
         "error2mails": "cn27529@gmail.com, billwstw@gmail.com, vincentlee986@gmail.com"
     },
     "heroku": {
-        "update": "https://cycoholic-api.herokuapp.com/posg/update",
-        "create": "https://cycoholic-api.herokuapp.com/posg/create",
-        "getmember": "https://cycoholic-api.herokuapp.com/getmember",
-        "getsells": "https://cycoholic-api.herokuapp.com/getsells",
+        "update": "https://alan-app.herokuapp.com/posg/update",
+        "create": "https://alan-app.herokuapp.com/posg/create",
+        "getmember": "https://alan-app.herokuapp.com/getmember",
+        "getsells": "https://alan-app.herokuapp.com/getsells",
         "error2mails": "cn27529@hotmail.com, billwstw@gmail.com, vincentlee986@gmail.com, cycoholics@gmail.com, kiwi@tkpos.com.tw, wisely@tkpos.com.tw, echan0312@tkpos.com.tw"
     }
 

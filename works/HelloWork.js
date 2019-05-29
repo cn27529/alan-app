@@ -11,17 +11,15 @@
 
 // module.exports = Member;
 
-module.exports = function () {
+module.exports = function() {
+  var HelloWork = {
+    hello: function() {
+      console.log('hi hello');
+    },
+    hi: function() {
+      return 'hi';
+    }
+  };
 
-    var HelloWork = {
-        hello: function () {
-            console.log('hi hello');
-        },
-        hi: function () {
-            return "hi";
-        }
-    };
-
-    return HelloWork;
-
+  return HelloWork;
 };
