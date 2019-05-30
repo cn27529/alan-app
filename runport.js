@@ -3,7 +3,7 @@ var app = require('./app');
 var http = require('http');
 var models = require('./models');
 
-var logger = require('./logConfig').logger('./index', 'debug');
+var logger = require('./logConfig').logger('./run', 'debug');
 
 /**
  * Get port from environment and store in Express.

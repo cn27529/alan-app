@@ -10,8 +10,16 @@ var logger = require('./logConfig').logger('./run', 'debug');
  */
 
 var port = normalizePort(process.env.PORT || '8080');
-//var port = normalizePort(process.env.PORT || '5000');
-//var port = normalizePort(process.env.PORT || '80');
+
+//自動切換port----------------------------------------20180607
+var options = process.argv;
+//return;
+if (options.length >= 4) {
+  if (typeof parseInt(options[3]) === 'number') {
+    var portNum = options[3];
+    port = normalizePort(process.env.PORT || portNum);
+  }
+}
 
 app.set('port', port);
 
