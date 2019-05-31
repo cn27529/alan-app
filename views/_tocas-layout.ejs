@@ -1,30 +1,28 @@
 <!-- http://cythilya.blogspot.tw/2015/02/bootstrap-rwd-template.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      <%=title%>
-    </title>
-    <!-- Tocas UI：CSS 與元件 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css"
-    />
-    <!-- Tocas JS：模塊與 JavaScript 函式 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/animate.css" />
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    <%=title%>
+  </title>
+  <!-- Tocas UI：CSS 與元件 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css" />
+  <!-- Tocas JS：模塊與 JavaScript 函式 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
 
-  <body>
-    <div class="ts narrow container">
-      <!--
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="../css/animate.css" />
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+  <div class="ts narrow container">
+    <!--
       <div class="ts top fixed inverted borderless large menu">
         <div class="ts narrow container">
           <div class="header item">
@@ -37,69 +35,66 @@
       </div>
 -->
 
-      <!--標題-->
-      <div id="app_path" class="ts segment">
-        <div class="ts center aligned four column grid">
-          <div class="left aligned two column row">
-            <div class="column">
-              <div class="ts large breadcrumb" v-for="(item, index) in links">
-                <span v-if="item === '/'">
-                  <a class="section" :href="'/'">root</a>
-                </span>
-                <span v-else>
-                  <a class="section" :href="'/' + item">{{ item }}</a>
-                </span>
-                <i class="right chevron icon divider"></i>
-              </div>
+    <!--標題-->
+    <div id="app_path" class="ts segment">
+      <div class="ts center aligned four column grid">
+        <div class="left aligned two column row">
+          <div class="column">
+            <div class="ts large breadcrumb" v-for="(item, index) in links">
+              <a v-if="item === '/'" class="section" :href="'/'">home</a><a v-else class="section"
+                :href="'/'+item">{{ item }}</a>
+              <i class="right chevron icon divider"></i>
             </div>
-            <div class="right aligned column">
-              {{ cool }}
-            </div>
+          </div>
+          <div class="right aligned column">
+            {{ cool }}
           </div>
         </div>
       </div>
-
-      <%- body%>
     </div>
-  </body>
 
-  <%- js%>
-  <script>
-    //app-breadcrumb
-    var app_path = new Vue({
-      el: '#app_path',
-      data: {
-        cool: '<%=cool%>',
-        title: '<%=title%>',
-        loading: false,
-        links: []
-      },
-      mounted: function() {},
-      created: function() {
-        // `this` points to the vm instance
+    <%- body%>
+  </div>
+</body>
 
-        var data = this.title.split('/');
-        var map = data.map(function(item, index, arr) {
-          if (item === '') return '/';
-          else return item;
-        });
+<%- js%>
+<script>
+  //app-breadcrumb
+  var app_path = new Vue({
+    el: '#app_path',
+    data: {
+      cool: '<%=cool%>',
+      title: '<%=title%>',
+      loading: false,
+      links: []
+    },
+    mounted: function () {},
+    created: function () {
+      // `this` points to the vm instance
 
-        this.links = map.filter(function(element, index, arr) {
-          return arr.indexOf(element) !== index;
-        });
+      var data = this.title.split('/');
+      var map = data.map(function (item, index, arr) {
+        if (item === '') return '/';
+        else return item;
+      });
 
-        //this.links = data;
-        alert(map);
-      },
-      //el methods
-      methods: {}
-    });
-  </script>
+      this.links = map.filter(function (element, index, arr) {
+        return arr.indexOf(element) !== index;
+      });
 
-  <%- css%>
-  <style>
-    a.header:first-letter {
-      text-transform: uppercase;
-    }
-  </style>
+      //this.links = data;
+      //alert(map);
+    },
+    //el methods
+    methods: {}
+  });
+</script>
+
+<%- css%>
+<style>
+  a.header:first-letter {
+    text-transform: uppercase;
+  }
+</style>
+
 </html>
