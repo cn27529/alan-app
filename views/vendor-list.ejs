@@ -1,79 +1,59 @@
 <%- contentFor('body')%>
 <script>
-    alert('contentFor("body")');
+    //alert('contentFor("body")');
 </script>
 
-<div class="well">
-        <h2>
-            <a href="javascript:;">
-                <%=title%>
-            </a>
-            <span id="cool">
-                <%=cool%>
-            </span>
-        </h2>
-    </div>
-
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
-            <thead>
-            <tr>
-                <% for(var i=0; i< cols.length; i++) { %>
-                    <th>
-                        <%= cols[i] %>
-                    </th>
-                    <% } %>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(var i=0; i< data.length; i++) { %>
-                <tr>
-                    <td>
-                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%= data[i].代號 %>">
-                                <%= data[i].代號 %>
-                            </button>
-                    </td>
-                    <td><%= data[i].名稱 %>
-                        <div id="demo<%= data[i].代號 %>" class="collapse">
-                                
-                                <h4>
-                                    連絡人
-                                </h4>
-                                <ul class="list-group">
-                                        <li class="list-group-item">王小明0928230520</li>
-                                        <li class="list-group-item">維大力 0223445555</li>
-                                      </ul>
-
-                              </div>
-                            </td>
-                    <td><%= data[i].電話 %></td>
-                    <td><%= data[i].傳真 %></td>
-                    <td><%= data[i].郵遞區號 %></td>
-                    <td><%= data[i].地址 %></td>
-                    <td><%= data[i].經營項目 %></td>
-                    <td><%= data[i].URL %></td>
-                    <td><%= data[i].EMail %></td>
-                    <td><%= data[i].LINE %></td>
-                    <td><%= data[i].備註 %></td>				
-                </tr>
-                
-
-                <% } %>
-
-        </tbody>
-    </table>
-    </div>
-    
+<table class="ts sortable padded large table">
+    <thead>
+        <tr>
+            <% for(var i=0; i< cols.length; i++) { %>
+            <th>
+                <%= cols[i] %>
+            </th>
+            <% } %>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0; i< data.length; i++) { %>
+        <tr>
+            <td>
+                <button class="ts primary button">
+                    <i class="heart icon"></i>
+                    <%= data[i].SName %>
+                </button>
+            </td>
+            
+            <td>
+                <%= data[i].STel %>
+            </td>
+            <td>
+                <%= data[i].SFax %>
+            </td>
+            <td>
+                <%= data[i].SAddress %>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="5">未到人數：3</th>
+        </tr>
+    </tfoot>
+</table>
 
 <%- contentFor('js')%>
 <script>
-    alert('contentFor("js")');
+    //alert('contentFor("js")');
+    var data = <%-stringJson%>;
+
+    ts('.ts.sortable.table').tablesort();
 </script>
 
 <%- contentFor('css')%>
 <script>
-    alert('contentFor("css")');
+    //alert('contentFor("css")');
 </script>
 <style>
-    
-    </style>
+
+</style>

@@ -1,17 +1,17 @@
 //console.log('hello test.js')
 
-var HelloWork = require('./works/HelloWork')
-var PasswordWork = require('./works/PasswordWork')
-var ConfigSettingWork = require('./works/ConfigSettingWork')
+var HelloWork = require('./works/HelloWork');
+var PasswordWork = require('./works/PasswordWork');
+var ConfigSettingWork = require('./works/ConfigSettingWork');
 
 //log4js---------------20180124
 var logger = require('./logConfig').logger('./test', 'debug');
 
-var _config = new ConfigSettingWork()
-console.log(_config.posgURL().update)
+var _config = new ConfigSettingWork();
+console.log(_config.posgURL().update);
 
 //logger.error('test...................write logger error')
-logger.info(_config.posgURL().update)
+logger.info(_config.posgURL().update);
 
 // var hello = new HelloWork()
 // var pw = new PasswordWork()
