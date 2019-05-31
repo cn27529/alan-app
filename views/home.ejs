@@ -40,8 +40,69 @@
     </div>
   </div>
 
+  <div id="app">
+    <div v-for="(item, index) in links">
+      <div class="ts primary card">
+        <div class="content" :href="url">
+          <div class="header">
+            {{ title }}
+          </div>
+          <div class="description">
+            {{ desc }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%- contentFor('js')%>
-  <script></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        cool: '<%=cool%>',
+        title: '<%=title%>',
+        loading: false,
+        links: []
+      },
+      mounted: function() {
+        var data = this.title.split('/');
+        this.links = data.map(function(item, index, array) {
+          if (item === '') return '/';
+          else return item;
+        });
+      },
+      created: function() {
+        // `this` points to the vm instance
+
+        var data = [];
+        data.push({
+          url: './product/list',
+          title: '產品',
+          desc: '進入產品功能，進行你的工作'
+        });
+        data.push({
+          url: './category/list',
+          title: '分類',
+          desc: '進入分類功能，進行你的工作'
+        });
+        data.push({
+          url: './vendor/list',
+          title: '供應商',
+          desc: '進入供應商功能，功能進行你的工作'
+        });
+        data.push({
+          url: './shipment/list',
+          title: '出貨',
+          desc: '進入出貨功能，功能進行你的工作'
+        });
+
+        this.links = data;
+      },
+      //el methods
+      methods: {}
+    });
+  </script>
 
   <%- contentFor('css')%>
 </div>
