@@ -24,6 +24,7 @@
 
   <body>
     <div class="ts narrow container">
+      <!--
       <div class="ts top fixed inverted borderless large menu">
         <div class="ts narrow container">
           <div class="header item">
@@ -34,6 +35,7 @@
           >
         </div>
       </div>
+-->
 
       <!--標題-->
       <div id="app_path" class="ts segment">
@@ -41,8 +43,12 @@
           <div class="left aligned two column row">
             <div class="column">
               <div class="ts large breadcrumb" v-for="(item, index) in links">
-                <a v-if="item === '/'" class="section" :href="'/'">home</a>
-                <a v-else class="section" :href="'/'+item">{{ item }}</a>
+                <span v-if="item === '/'">
+                  <a class="section" :href="'/'">root</a>
+                </span>
+                <span v-else>
+                  <a class="section" :href="'/' + item">{{ item }}</a>
+                </span>
                 <i class="right chevron icon divider"></i>
               </div>
             </div>
@@ -68,15 +74,22 @@
         loading: false,
         links: []
       },
-      mounted: function() {
+      mounted: function() {},
+      created: function() {
+        // `this` points to the vm instance
+
         var data = this.title.split('/');
-        this.links = data.map(function(item, index, array) {
+        var map = data.map(function(item, index, arr) {
           if (item === '') return '/';
           else return item;
         });
-      },
-      created: function() {
-        // `this` points to the vm instance
+
+        this.links = map.filter(function(element, index, arr) {
+          return arr.indexOf(element) !== index;
+        });
+
+        //this.links = data;
+        alert(map);
       },
       //el methods
       methods: {}

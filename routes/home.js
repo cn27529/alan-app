@@ -9,7 +9,7 @@ var logger = require('../logConfig').logger(logpath, 'debug');
 router.get('/', function(req, res, next) {
   //
   var title = req.originalUrl + '';
-  
+
   res.render('home', {
     title: title,
     cool: cool(),

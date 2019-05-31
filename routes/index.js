@@ -9,7 +9,7 @@ var logger = require('../logConfig').logger(logpath, 'debug');
 router.get('/', function(req, res) {
   //call router_me middleware
   var title = req.originalUrl + '';
-  
+
   res.render('index', {
     title: title,
     cool: cool(),
