@@ -62,7 +62,6 @@ router.get('/all', function(req, res) {
       ]
     })
     .then(function(data) {
-      //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
       json.data = data;
       json.code = _err.ALL.KEY;
       json.msg = _err.ALL.VAL;
@@ -104,7 +103,6 @@ router.get('/list', function(req, res) {
       ]
     })
     .then(function(data) {
-      //if (keyword != "Q_QtaiwanQvQ") data = cool(); console.log(data);
       json.data = data;
       json.code = _err.ALL.KEY;
       json.msg = _err.ALL.VAL;
