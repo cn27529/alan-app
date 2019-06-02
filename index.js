@@ -13,8 +13,10 @@ var port = normalizePort(process.env.PORT || '8080');
 
 //自動切換port----------------------------------------20180607
 var options = process.argv;
-//return;
-if (options.length >= 4) {
+console.log('process.argv.length=', options.length);
+logger.info('process.argv.length=', options.length);
+
+if (options.length >= 5) {
   if (typeof parseInt(options[3]) === 'number') {
     var portNum = options[3];
     port = normalizePort(process.env.PORT || portNum);
@@ -45,19 +47,24 @@ var syncOption = {
   logging: false
 };
 
-models.sequelize.sync().then(function() {
-  /**
-   * Listen on provided port, on all network interfaces.
-   */
-  server.listen(port, function() {
-    //debug('Express server listening on port ' + server.address().port);
-    console.log('Node app is running on port', port);
-    logger.info('Node app is running on port', port);
-  });
+models
+  .sequelize
+  .sync()
+  .then(function () {
+    /**
+     * Listen on provided port, on all network interfaces.
+     */
+    server
+      .listen(port, function () {
+        //debug('Express server listening on port ' + server.address().port);
+        console.log('It a app running on Node express, port', port);
+        logger.info('It a app running on Node express, port', port);
+      });
 
-  server.on('error', onError);
-  server.on('listening', onListening);
-});
+    server.on('error', onError);
+    server.on('listening', onListening);
+
+  });
 
 /**
  * Normalize a port into a number, string, or false.
@@ -93,7 +100,9 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+  var bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -118,6 +127,8 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
   //debug('Listening on ' + bind);
 }

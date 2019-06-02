@@ -13,8 +13,10 @@ var port = normalizePort(process.env.PORT || '8080');
 
 //自動切換port----------------------------------------20180607
 var options = process.argv;
-//return;
-if (options.length >= 4) {
+console.log('process.argv.length=', options.length);
+logger.info('process.argv.length=', options.length);
+
+if (options.length >= 5) {
   if (typeof parseInt(options[3]) === 'number') {
     var portNum = options[3];
     port = normalizePort(process.env.PORT || portNum);
@@ -45,11 +47,11 @@ var syncOption = {
   logging: false
 };
 
-models.sequelize.sync().then(function() {
+models.sequelize.sync().then(function () {
   /**
    * Listen on provided port, on all network interfaces.
    */
-  server.listen(port, function() {
+  server.listen(port, function () {
     //debug('Express server listening on port ' + server.address().port);
     console.log('Node app is running on port', port);
     logger.info('Node app is running on port', port);
