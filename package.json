@@ -34,7 +34,7 @@
     "sequelize-cli": "^2.4.0",
     "serve-favicon": "^2.3.0",
     "sqlite3": "^3.1.13",
-    "uuid": "^3.1.0",
+    "uuid": "^3.3.2",
     "validator": "^9.2.0",
     "xlsx": "^0.12.13"
   },
