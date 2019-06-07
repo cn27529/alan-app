@@ -4,11 +4,13 @@
         <h1>
             {{ title }}
         </h1>
+
+        <div :href="#" class="item" v-for="(item, index) in files">
+            <i class="file big icon"></i>{{ item.name }}</div>
+
     </div>
 
     <%- contentFor('js')%>
-
-
 
         <script>
             //var dataString = '<%-dataString%>';
