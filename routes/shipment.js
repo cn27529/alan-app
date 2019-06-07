@@ -1,10 +1,10 @@
 //var models = require('../models');
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var cool = require('cool-ascii-faces');
+var cool = require("cool-ascii-faces");
 
-var logpath = './routes/shipment';
-var logger = require('../logConfig').logger(logpath, 'debug');
+var logpath = "./routes/shipment";
+var logger = require("../logConfig").logger(logpath, "debug");
 
 // //請求路由時，會經過它
 // router.use(function(req,res,next){
@@ -13,29 +13,42 @@ var logger = require('../logConfig').logger(logpath, 'debug');
 //     next();
 // });
 
-router.get('/', function(req, res) {
-  var title = req.originalUrl + '';
-  logger.info(title);
+router.get("/", function(req, res) {
+    var title = req.originalUrl + "";
+    logger.info(title);
 
-  res.render('shipment', {
-    title: title,
-    cool: cool(),
-    // items: [1991, 'byvoid', 'express', 'Node.js']
-    layout: '_tocas-layout'
-  });
+    res.render("shipment", {
+        title: title,
+        cool: cool(),
+        // items: [1991, 'byvoid', 'express', 'Node.js']
+        layout: "_tocas-layout"
+    });
 });
 
-router.get('/new', function(req, res) {
-  var title = req.originalUrl + '';
-  logger.info(title);
-  //var path_array = req.originalUrl.split('/');
+router.get("/list", function(req, res) {
+    var title = req.originalUrl + "";
+    //logger.info(title);
+    //var path_array = req.originalUrl.split('/');
 
-  res.render('shipment-new', {
-    title: title,
-    cool: cool(),
-    // items: [1991, 'byvoid', 'express', 'Node.js']
-    layout: '_tocas-layout'
-  });
+    res.render("shipment-list", {
+        title: title,
+        cool: cool(),
+        // items: [1991, 'byvoid', 'express', 'Node.js']
+        layout: "_tocas-layout"
+    });
+});
+
+router.get("/new", function(req, res) {
+    var title = req.originalUrl + "";
+    logger.info(title);
+    //var path_array = req.originalUrl.split('/');
+
+    res.render("shipment-new", {
+        title: title,
+        cool: cool(),
+        // items: [1991, 'byvoid', 'express', 'Node.js']
+        layout: "_tocas-layout"
+    });
 });
 
 module.exports = router;

@@ -23,23 +23,22 @@ var logger = require("../logConfig").logger(logpath, "debug");
 
 router.get("/", function(req, res) {
     var title = req.originalUrl + "";
-    logger.info(title);
 
-    var myFolder = "./xlsx-import-files";
+    var myFolder = "./xlsx";
     var folderFiles = _FAFWork.getFolderFiles(myFolder);
     var returnFiles = _FAFWork.getReturnFiles(folderFiles, myFolder);
-    console.log(returnFiles);
+    //console.log(returnFiles);
 
     res.render("product", {
         title: title,
         cool: cool(),
-        data: returnFiles,
+        dataString: JSON.stringify(returnFiles),
         layout: "_tocas-layout" //指定layout名可不需副名.ejs
     });
 });
 
 router.get("/list", function(req, res) {
-    logger.info("/all");
+    //logger.info("/all");
 
     var keyword = req.params.keyword;
     //var token = req.params.token; //先不檢查

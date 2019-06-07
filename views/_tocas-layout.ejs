@@ -26,19 +26,27 @@
         <!--標題-->
         <div id="app_path">
 
-            <div class="ts top fixed inverted borderless large menu">
+            <!-- <div class="ts top fixed inverted borderless large menu">
                 <a v-if="item === 'home'" :href="'/'" class="item" v-for="(item, index) in links">
                     <i class="home big icon"></i>Home</a>
                 <a v-else :href="'/'+item" class="item">
                     <i class="folder outline big icon"></i>{{ item }}</a>
+            </div> -->
+
+            <div class="ts top fixed inverted borderless large menu">
+                <a v-if="item.name === 'home'" :href="'/'" class="item" v-for="(item, index) in linksData">
+                    <i class="home big icon"></i>home</a>
+                <a v-else :href="'/'+item.name" class="item">
+                    <i :class="item.click? 'folder open outline big icon':'folder outline big icon'"></i> {{ item.name }}
+                </a>
+
             </div>
+
             <div style="margin-bottom: 80px;">
                 top height
             </div>
 
         </div>
-
-
 
         <%- body%>
     </div>
@@ -53,7 +61,8 @@
                 cool: '<%=cool%>',
                 title: '<%=title%>',
                 loading: false,
-                links: []
+                links: [],
+                linksData: []
             },
             mounted: function() {},
             created: function() {
@@ -72,6 +81,17 @@
                 //alert(JSON.stringify(result));
 
                 this.links = result;
+
+                var linksData = [];
+                result.forEach(function(item, index, arr) {
+                    var data = {};
+                    data.click = false;
+                    data.name = item;
+                    data.index = index;
+                    if (index === result.length - 1) data.click = true;
+                    linksData.push(data);
+                });
+                this.linksData = Array.from(linksData);
 
             },
             //el methods

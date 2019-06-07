@@ -1,39 +1,39 @@
-<!--  -->
-
 <%- contentFor('body')%>
-    <div class="jumbotron">
-        <div class="container">
-            <h2>
-                <a href="https://cn27529.gitbooks.io/alan-app/content/logs.html">
-                    <%=title%>
-                </a>
-                <span id="cool">
-                    <%=cool%>
-                </span>
-            </h2>
-            <ul class="nav">
-                <% for(var i=0; i< data.length; i++) { %>
 
-                    <a style="margin-top: 10px;" target="blank" href="../logs/<%= data[i].name %>" class="btn btn-primary btn-lg active" role="button"
-                        aria-pressed="true">
-                        <%= data[i].name %>
-                            <div>
-                                <%= data[i].kb %>
-                                    kb
-                            </div>
-                    </a>
-
-                    <% } %>
-            </ul>
-
-        </div>
+    <div id="app_page">
+        <h1>
+            {{ title }}
+        </h1>
     </div>
 
     <%- contentFor('js')%>
+
+
+
         <script>
-            //alert('contentFor("js")');
+            //var dataString = '<%-dataString%>';
+
+            //app-breadcrumb
+            var app_page = new Vue({
+                el: '#app_page',
+                data: {
+                    cool: '<%=cool%>',
+                    title: '<%=title%>',
+                    loading: false,
+                    files: [],
+                },
+                mounted: function() {},
+                created: function() {
+                    // `this` points to the vm instance
+                    var jsonString = '<%-dataString%>';
+                    this.files = JSON.parse(jsonString);
+                },
+                //el methods
+                methods: {}
+            });
         </script>
 
         <%- contentFor('css')%>
             <style>
+
             </style>
