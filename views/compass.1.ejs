@@ -1,0 +1,153 @@
+<%- contentFor('body')%>
+
+<div id="app_page">
+  <h1>
+    {{ title }}
+  </h1>
+  <div id="compass"></div>
+  <div id="options"></div>
+  <div id="info"></div>
+</div>
+
+<%- contentFor('js')%>
+
+<script>
+  //https://my.oschina.net/u/2324376/blog/790939
+
+  // 指南针
+  var compass = document.getElementById('compass');
+  // compass heading取值模式
+  var mode = '0';
+  // 最近一次动画的时间
+  var now = Date.now();
+
+  if (window.DeviceOrientationEvent) {
+    document.getElementById('options').addEventListener(
+      'click',
+      function(e) {
+        if (e.target.tagName === 'INPUT') {
+          mode = e.target.value;
+        }
+      },
+      false
+    );
+    window.addEventListener(
+      'deviceorientation',
+      function(event) {
+        var ntime = Date.now();
+        if (ntime - now < 100) return; // 避免过于频繁的动画
+        now = ntime;
+        var heading;
+        // iOS设备直接使用webkitCompassHeading
+        if ('webkitCompassHeading' in event) {
+          // 由于实际是指北的，需要反转角度，下同
+          heading = 360 - event.webkitCompassHeading;
+        } else if (window.chrome) {
+          // chrome浏览器的event.alpha是错误的，计算出来的值也是错的，需要修正
+          heading = event.alpha - 270;
+          if (heading < 0) heading += 360;
+        } else {
+          if (mode === '0') {
+            // 安卓浏览器的event.alpha直接可用，这样反应快点
+            heading = event.alpha;
+          } else {
+            // 按照w3c标准规则计算compass heading
+            heading =
+              360 - compassHeading(event.alpha, event.beta, event.gamma);
+          }
+          // TODO: 火狐始终减去180
+          // heading -= 180;
+        }
+
+        compass.style.Transform = 'rotate(' + heading + 'deg)';
+        compass.style.WebkitTransform = 'rotate(' + heading + 'deg)';
+        compass.style.MozTransform = 'rotate(' + heading + 'deg)';
+
+        var info =
+          'webkitHeading:' +
+          event.webkitCompassHeading +
+          '<br>' +
+          'heading: ' +
+          heading +
+          '<br>' +
+          'alpha: ' +
+          event.alpha +
+          '<br>' +
+          'beta:' +
+          event.beta +
+          '<br>' +
+          'gamma:' +
+          event.gamma +
+          '<br>' +
+          'chrome:' +
+          !!window.chrome +
+          '<br>';
+        document.getElementById('info').innerHTML = info;
+      },
+      false
+    );
+  } else {
+    document.getElementById('info').innerHTML = '你的浏览器不支持陀螺仪！';
+  }
+
+  // http://stackoverflow.com/questions/18112729/calculate-compass-heading-from-deviceorientation-event-api/21829819#21829819
+  function compassHeading(alpha, beta, gamma) {
+    // Convert degrees to radians
+    var alphaRad = alpha * (Math.PI / 180);
+    var betaRad = beta * (Math.PI / 180);
+    var gammaRad = gamma * (Math.PI / 180);
+
+    // Calculate equation components
+    var cA = Math.cos(alphaRad);
+    var sA = Math.sin(alphaRad);
+    var cB = Math.cos(betaRad);
+    var sB = Math.sin(betaRad);
+    var cG = Math.cos(gammaRad);
+    var sG = Math.sin(gammaRad);
+
+    // Calculate A, B, C rotation components
+    var rA = -cA * sG - sA * sB * cG;
+    var rB = -sA * sG + cA * sB * cG;
+    var rC = -cB * cG;
+
+    // Calculate compass heading
+    var compassHeading = Math.atan(rA / rB);
+
+    // Convert from half unit circle to whole unit circle
+    if (rB < 0) {
+      compassHeading += Math.PI;
+    } else if (rA < 0) {
+      compassHeading += 2 * Math.PI;
+    }
+
+    // Convert radians to degrees
+    compassHeading *= 180 / Math.PI;
+
+    return compassHeading;
+  }
+</script>
+
+<script>
+  //var dataString = '<%-dataString%>';
+
+  var app_page = new Vue({
+    el: '#app_page',
+    data: {
+      cool: '<%=cool%>',
+      title: '<%=title%>',
+      loading: false,
+      compass: []
+    },
+    mounted: function() {},
+    created: function() {
+      // `this` points to the vm instance
+      var jsonString = '<%-dataString%>';
+      if (jsonString !== '') this.compass = JSON.parse(jsonString);
+    },
+    //el methods
+    methods: {}
+  });
+</script>
+
+<%- contentFor('css')%>
+<style></style>

@@ -11,13 +11,17 @@ var moment = require('moment');
 //log4js---------------20180124
 var logger = require('./logConfig').logger('./app', 'dubug');
 
-app.use(bodyparser.urlencoded({
-  extended: true,
-  limit: 1024 * 1024 * 20
-}));
-app.use(bodyparser.json({
-  limit: 1024 * 1024 * 20
-}));
+app.use(
+  bodyparser.urlencoded({
+    extended: true,
+    limit: 1024 * 1024 * 20
+  })
+);
+app.use(
+  bodyparser.json({
+    limit: 1024 * 1024 * 20
+  })
+);
 
 // http://stackoverflow.com/questions/24433733/learning-node-express-public-folde
 // r-not-working public folders app.use("/public",
@@ -53,6 +57,7 @@ var view = require('./routes/view');
 var product = require('./routes/product');
 var category = require('./routes/category');
 var shipment = require('./routes/shipment');
+var compass = require('./routes/compass');
 
 app.use(route_init); //on init router
 app.use('/', home);
@@ -72,6 +77,7 @@ app.use('/view', view);
 app.use('/product', product); //20181016
 app.use('/category', category); //20181016
 app.use('/shipment', shipment); //20181016
+app.use('/compass', compass);
 
 app.use(route_error);
 
