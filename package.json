@@ -4,14 +4,13 @@
   "description": "You can use the [editor on GitHub](https://github.com/cn27529/alan-app/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
   "main": "index.js",
   "private": true,
+  "engines": {
+    "node": ">=9.11.2"
+  },
   "scripts": {
     "dev": "node run.js dev",
     "test": "node run.js dev",
     "start": "node index.js dev"
-  },
-  "engines": {
-    "node": ">=9.11.2 <11.0.0",
-    "npm": ">=6.0.0 <7.0.0 "
   },
   "dependencies": {
     "aws-sdk": "^2.342.0",
