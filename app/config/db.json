@@ -2,7 +2,7 @@
     "development": {
         "database": "sqlite",
         "dialect": "sqlite",
-        "storage": "./db.alan-db.sqlite"
+        "storage": "./app/db.alan-db.sqlite"
     },
     "test": {
         "username": "dbouser",
@@ -21,7 +21,7 @@
     "heroku": {
         "database": "sqlite",
         "dialect": "sqlite",
-        "storage": "./db.alan-db.sqlite"
+        "storage": "./app/db.alan-db.sqlite"
     }
 
 }
