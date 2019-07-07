@@ -25,7 +25,7 @@ router.get("/", function(req, res) {
     var title = req.originalUrl + "";
     logger.info(title);
 
-    var myFolder = "./xlsx-import-files";
+    var myFolder = "./app/xlsx-import-files";
     var folderFiles = _FAFWork.getFolderFiles(myFolder);
     var returnFiles = _FAFWork.getReturnFiles(folderFiles, myFolder);
     console.log(returnFiles);
@@ -155,7 +155,7 @@ module.exports = router;
 //     var title = req.originalUrl + '';
 //     logger.info(title);
 
-//     var myFolder = './xlsx-import-files';
+//     var myFolder = './app/xlsx-import-files';
 //     var folderFiles = _FAFWork.getFolderFiles(myFolder);
 //     var returnFiles = _FAFWork.getReturnFiles(folderFiles, myFolder);
 //     console.log(returnFiles);
