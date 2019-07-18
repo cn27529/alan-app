@@ -12,23 +12,23 @@ var moment = require('moment');
 var logger = require('./logConfig').logger('./app', 'dubug');
 
 app.use(
-  bodyparser.urlencoded({
-    extended: true,
-    limit: 1024 * 1024 * 20
-  })
+    bodyparser.urlencoded({
+        extended: true,
+        limit: 1024 * 1024 * 20
+    })
 );
 app.use(
-  bodyparser.json({
-    limit: 1024 * 1024 * 20
-  })
+    bodyparser.json({
+        limit: 1024 * 1024 * 20
+    })
 );
 
 // http://stackoverflow.com/questions/24433733/learning-node-express-public-folde
 // r-not-working public folders app.use("/public",
 // express.static(path.join(__dirname, 'public')));
-app.use('/css', express.static(path.join(__dirname, 'public/css')));
-app.use('/images', express.static(path.join(__dirname, 'public/images')));
-app.use('/js', express.static(path.join(__dirname, 'public/js')));
+//app.use('/css', express.static(path.join(__dirname, 'public/css')));
+//app.use('/images', express.static(path.join(__dirname, 'public/images')));
+//app.use('/js', express.static(path.join(__dirname, 'public/js')));
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
