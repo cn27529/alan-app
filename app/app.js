@@ -5,7 +5,6 @@ var favicon = require('serve-favicon'); //--------add on 161124
 var app = express();
 var bodyparser = require('body-parser');
 var path = require('path');
-
 var moment = require('moment');
 
 //log4js---------------20180124
@@ -24,12 +23,9 @@ app.use(
 );
 
 // http://stackoverflow.com/questions/24433733/learning-node-express-public-folde
-// r-not-working public folders app.use("/public",
-// express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'public/css')));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use('/js', express.static(path.join(__dirname, 'public/js')));
-
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.use('/logs', express.static(path.join(__dirname, 'logs'))); //add on 20180520
