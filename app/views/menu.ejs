@@ -1,27 +1,29 @@
-<!DOCTYPE html>
-<html>
+<%- contentFor('body')%>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello - CoreMVC01</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
 
-<body>
+
+
     <div id="app">
+
         <h1>{{ message }}</h1>
-        <select class="from-control" v-model="menu_one_idx">
+
+        <div class="ts action input">
+
+
+            <select class="ts basic dropdown" v-model="menu_one_idx">
             <option v-bind:value="i" v-for="(item, i) in init_menu">{{ i+1 }}-{{ item.ClassName }}</option>
         </select>
-        <select class="from-control" v-model="menu_two_idx">
+            <select class="ts basic dropdown" v-model="menu_two_idx">
             <option v-bind:value="j" v-for="(item, j) in menus[menu_one_idx].Customers">
                 {{ menu_one_idx+1 }}-{{ j+1 }}-{{ item.Cname }}
             </option>
         </select>
 
+        </div>
+
         <p>menu={{ current_menu.ClassName }}, vlaue={{ current_menu.ClassId }}</p>
         <p>sub menu={{ current_sub_menu.Cname }}, vlaue={{ current_sub_menu.Cid }}</p>
+
 
     </div>
 
@@ -71,9 +73,11 @@
         });
     </script>
 
-</body>
+    <%- contentFor('js')%>
+        <script>
+        </script>
 
-</html>
-<!--
-https://codepen.io/g901612002/pen/ZxpvLZ?editors=1010
--->
+        <%- contentFor('css')%>
+            <style>
+
+            </style>
