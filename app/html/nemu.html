@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello - CoreMVC01</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <select class="from-control" v-model="selected" v-on:change="onChange_dataItems">
+            <option v-bind:value="item.Customers" v-for="item in nemus">{{ item.ClassName }}</option>
+        </select>
+
+        <select class="from-control" v-model="sub_selected">
+            <option v-bind:value="item.Cid" v-for="item in sub_selected">{{ item.Cname }}
+            </option>
+        </select>
+
+        <p>{{ selected }}</p>
+
+    </div>
+
+    <script>
+        var data = '[{"Customers":[{"Cid":"CustA-001-01","Cname":"政興","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustA"},{"Cid":"CustA-002-01","Cname":"永進","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustA"},{"Cid":"CustA-003-01","Cname":"錦欣","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustA"},{"Cid":"CustA-004-01","Cname":"飛訊","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustA"}],"ClassId":"CustA","ClassName":"批發"},{"Customers":[{"Cid":"CustB-001-01","Cname":"兆馡","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-00","Cname":"咖啡弄 - 中央廚房","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-01","Cname":"咖啡弄 - 忠孝店(一弄)","Ctel":"02-2711-1912","Cfax":null,"Ccity":"臺北市大安區忠孝東路四段101巷45號1樓","ClassId":"CustB"},{"Cid":"CustB-002-02","Cname":"咖啡弄 - 敦化店(二弄)","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-03","Cname":"咖啡弄 - 士林店(三弄)","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-04","Cname":"咖啡弄 - 站前店(四弄)","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-06","Cname":"咖啡弄 - 劍潭店(六弄)","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-09","Cname":"咖啡弄 - 臺中店","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-003-01","Cname":"七味之友","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"}],"ClassId":"CustB","ClassName":"麵包、咖啡店"},{"Customers":[{"Cid":"CustZ-000-01","Cname":"門市銷售","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustZ"}],"ClassId":"CustZ","ClassName":"零售"}]';
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                nemus: JSON.parse(data),
+                selected: null,
+                sub_selected: null,
+            },
+            methods: {
+                onChange_dataItems: function(event) {
+                    console.log(this.selected);
+                    this.sub_selected = this.selected;
+                    //this.sub_selected = 'hello';
+                    console.log(this.sub_selected);
+                },
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>
+<!--
+https://codepen.io/g901612002/pen/ZxpvLZ?editors=1010
+-->
