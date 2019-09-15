@@ -49,6 +49,7 @@
                     console.log('this.menu_one_idx己改變', this.menu_one_idx);
                     this.current_menu = this.menus[this.menu_one_idx];
                     this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    this.menu_two_idx = 0;
                 },
                 menu_two_idx: function() {
                     console.log('this.menu_two_idx己改變', this.menu_two_idx);
@@ -56,12 +57,18 @@
                 }
             },
             computed: {
-                init_menu() {
+                init_menu: function() {
 
                     this.current_menu = this.menus[this.menu_one_idx];
                     this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
-
                     return this.menus;
+                },
+                change_menu: function() {
+
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    return this.current_sub_menu;
+
                 }
             },
             methods: {
@@ -75,6 +82,7 @@
 
     <%- contentFor('js')%>
         <script>
+            document.title = 'Hello 連動效果';
         </script>
 
         <%- contentFor('css')%>
