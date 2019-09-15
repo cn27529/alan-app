@@ -6,22 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello - CoreMVC01</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Tocas UI：CSS 與元件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css" />
+    <!-- Tocas JS：模塊與 JavaScript 函式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
 </head>
 
 <body>
     <div id="app">
+
         <h1>{{ message }}</h1>
-        <select class="from-control" v-model="menu_one_idx">
-            <option v-bind:value="i" v-for="(item, i) in init_menu">{{ i+1 }}-{{ item.ClassName }}</option>
-        </select>
-        <select class="from-control" v-model="menu_two_idx">
-            <option v-bind:value="j" v-for="(item, j) in menus[menu_one_idx].Customers">
-                {{ menu_one_idx+1 }}-{{ j+1 }}-{{ item.Cname }}
-            </option>
-        </select>
+
+        <div class="ts action input">
+
+
+            <select class="ts basic dropdown" v-model="menu_one_idx">
+                <option v-bind:value="i" v-for="(item, i) in init_menu">{{ i+1 }}-{{ item.ClassName }}</option>
+            </select>
+            <select class="ts basic dropdown" v-model="menu_two_idx">
+                <option v-bind:value="j" v-for="(item, j) in menus[menu_one_idx].Customers">
+                    {{ menu_one_idx+1 }}-{{ j+1 }}-{{ item.Cname }}
+                </option>
+            </select>
+
+        </div>
 
         <p>menu={{ current_menu.ClassName }}, vlaue={{ current_menu.ClassId }}</p>
         <p>sub menu={{ current_sub_menu.Cname }}, vlaue={{ current_sub_menu.Cid }}</p>
+
 
     </div>
 
@@ -47,6 +59,7 @@
                     console.log('this.menu_one_idx己改變', this.menu_one_idx);
                     this.current_menu = this.menus[this.menu_one_idx];
                     this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    this.menu_two_idx = 0;
                 },
                 menu_two_idx: function() {
                     console.log('this.menu_two_idx己改變', this.menu_two_idx);
@@ -54,12 +67,18 @@
                 }
             },
             computed: {
-                init_menu() {
+                init_menu: function() {
 
                     this.current_menu = this.menus[this.menu_one_idx];
                     this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
-
                     return this.menus;
+                },
+                change_menu: function() {
+
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    return this.current_sub_menu;
+
                 }
             },
             methods: {
