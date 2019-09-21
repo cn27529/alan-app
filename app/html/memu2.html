@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello - CoreMVC01</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Tocas UI：CSS 與元件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css" />
+    <!-- Tocas JS：模塊與 JavaScript 函式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <h1>{{ message }}</h1>
+        <div class="ts action input">
+
+            <table>
+                <tr>
+                    <td>客戶名稱：</td>
+                    <td>
+                        <select class="ts basic dropdown" v-model="menu_one_idx" style="width:150px">
+                            <option v-bind:value="i" v-for="(item, i) in init_menu">{{ i+1 }}-{{ item.ClassName }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="ts basic dropdown" v-model="menu_two_idx" style="width:250px">
+                            <option v-bind:value="j" v-for="(item, j) in menus[menu_one_idx].Customers">
+                                {{ menu_one_idx+1 }}-{{ j+1 }}-{{ item.Cname }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <p>menu={{ current_menu.ClassName }}, vlaue={{ current_menu.ClassId }}</p>
+        <p>sub menu={{ current_sub_menu.Cname }}, vlaue={{ current_sub_menu.Cid }}</p>
+    </div>
+    <hr>
+    <div id="app2">
+        <div class="ts action input">
+            <table>
+                <tr>
+                    <td>產品名稱：</td>
+                    <td>
+                        <select class="ts basic dropdown" v-model="menu_one_idx" style="width:150px">
+                            <option v-bind:value="i" v-for="(item, i) in init_menu">{{ i+1 }}-{{ item.ClassName }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="ts basic dropdown" v-model="menu_two_idx" style="width:250px">
+                            <option v-bind:value="j" v-for="(item, j) in menus[menu_one_idx].Products">
+                                {{ menu_one_idx+1 }}-{{ j+1 }}-{{ item.Pname }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>規格：</td>
+                    <td>
+                        <P>{{current_sub_menu}}</P>
+                    </td>
+                </tr>
+                <tr>
+                    <td>單位：</td>
+                    <td>
+                        <P>{{current_sub_menu}}</P>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <script>
+        var custdata = '[{"Customers":[{"Cid":"CustA-001-01","Cname":"政興","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustA"},{"Cid":"CustA-002-01","Cname":"永進","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustA"},{"Cid":"CustA-003-01","Cname":"錦欣","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustA"},{"Cid":"CustA-004-01","Cname":"飛訊","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustA"}],"ClassId":"CustA","ClassName":"批發"},{"Customers":[{"Cid":"CustB-001-01","Cname":"兆馡","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-00","Cname":"咖啡弄 - 中央廚房","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-01","Cname":"咖啡弄 - 忠孝店(一弄)","Ctel":"02-2711-1912","Cfax":null,"Ccity":"臺北市大安區忠孝東路四段101巷45號1樓","ClassId":"CustB"},{"Cid":"CustB-002-02","Cname":"咖啡弄 - 敦化店(二弄)","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-03","Cname":"咖啡弄 - 士林店(三弄)","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-04","Cname":"咖啡弄 - 站前店(四弄)","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-06","Cname":"咖啡弄 - 劍潭店(六弄)","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-002-09","Cname":"咖啡弄 - 臺中店","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"},{"Cid":"CustB-003-01","Cname":"七味之友","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustB"}],"ClassId":"CustB","ClassName":"麵包、咖啡店"},{"Customers":[{"Cid":"CustZ-000-01","Cname":"門市銷售","Ctel":null,"Cfax":null,"Ccity":null,"ClassId":"CustZ"}],"ClassId":"CustZ","ClassName":"零售"}]';
+
+        var proddata = '[{"Products":[],"ClassId":"F-00","ClassName":"食品","ClassDescription":null},{"Products":[{"Pid":"F-01001-001-01","Pname":"杏仁粉","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01001-002-01","Pname":"杏仁片","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01001-003-01","Pname":"杏仁角","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01001-004-01","Pname":"杏仁條","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01001-005-01","Pname":"杏仁粒","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01002-001-01","Pname":"特選核桃","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01002-002-01","Pname":"核桃 - 40%","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01002-003-01","Pname":"1/8核桃","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01003-001-01","Pname":"腰果 - 240","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01003-002-01","Pname":"腰果 - 320","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01003-003-01","Pname":"腰果 - 切半","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01004-001-01","Pname":"榛果粒 - 去皮","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01004-002-01","Pname":"榛果粒 - 有皮","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01004-003-01","Pname":"榛果粉","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01005-001-01","Pname":"南瓜子","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01006-001-01","Pname":"葵瓜子","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01007-001-01","Pname":"(熟)黑芝麻粒","Specification":"500g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01007-002-01","Pname":"(熟)白芝麻粒","Specification":"500g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01007-003-01","Pname":"(熟)黑芝麻粉","Specification":"500g","Unit":"包","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01008-001-01","Pname":"黃金蜜栗子","Specification":"1.1kg","Unit":"罐","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01008-002-01","Pname":"沙巴東 - 有糖栗子泥","Specification":null,"Unit":"罐","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01008-003-01","Pname":"沙巴東 - 無糖栗子泥","Specification":null,"Unit":"罐","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01008-004-01","Pname":"安貝 - 有糖栗子泥","Specification":null,"Unit":"罐","BarCode":null,"ClassId":"F-01"},{"Pid":"F-01008-005-01","Pname":"安貝 - 無糖栗子泥","Specification":null,"Unit":"罐","BarCode":null,"ClassId":"F-01"}],"ClassId":"F-01","ClassName":"堅果、雜糧","ClassDescription":null},{"Products":[{"Pid":"F-02001-001-01","Pname":"天然乳酪粉","Specification":"300g","Unit":"包","BarCode":null,"ClassId":"F-02"},{"Pid":"F-02001-002-01","Pname":"飛駝起司粉 - 淡味","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-02"},{"Pid":"F-02001-003-01","Pname":"飛駝起司粉 - 濃味","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-02"},{"Pid":"F-02001-004-01","Pname":"飛駝起司粉 - 金黃","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-02"},{"Pid":"F-02001-005-01","Pname":"安佳 - 帕米桑起司粉","Specification":"1kg","Unit":"罐","BarCode":null,"ClassId":"F-02"},{"Pid":"F-02001-005-11","Pname":"安佳 - 帕米桑起司粉","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-02"},{"Pid":"F-02001-006-01","Pname":"安佳 - CP1起司粉","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-02"}],"ClassId":"F-02","ClassName":"奶製品","ClassDescription":null},{"Products":[{"Pid":"F-03001-001-01","Pname":"正慧 - 特級巧克力 片 - 深黑苦甜(不含蔗糖)","Specification":"500g","Unit":"片","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-002-01","Pname":"正慧 - 特級巧克力 片 - 深黑苦甜","Specification":"1kg","Unit":"片","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-002-11","Pname":"正慧 - 特級巧克力 鈕釦 - 深黑苦甜","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-003-01","Pname":"正慧 - 高級巧克力 片 - 牛奶","Specification":"1kg","Unit":"片","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-003-11","Pname":"正慧 - 高級巧克力 鈕釦 - 牛奶","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-004-01","Pname":"正慧 - 高級巧克力 片 - 純白","Specification":"1kg","Unit":"片","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-004-11","Pname":"正慧 - 高級巧克力 鈕釦 - 純白","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-005-01","Pname":"正慧 - 高級巧克力 片 - 草莓風味","Specification":"1kg","Unit":"片","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-005-61","Pname":"正慧 - 高級巧克力 片 - 草莓含果粒","Specification":"1kg","Unit":"片","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-006-01","Pname":"正慧 - 高級巧克力 片 - 檸檬","Specification":"1kg","Unit":"片","BarCode":null,"ClassId":"F-03"},{"Pid":"F-03001-007-01","Pname":"正慧 - 高級巧克力 片 - 咖啡","Specification":"1kg","Unit":"片","BarCode":null,"ClassId":"F-03"}],"ClassId":"F-03","ClassName":"巧克力、可可","ClassDescription":null},{"Products":[{"Pid":"F-04001-001-01","Pname":"濃縮草莓醬","Specification":"1kg","Unit":"罐","BarCode":null,"ClassId":"F-04"}],"ClassId":"F-04","ClassName":"水果","ClassDescription":null},{"Products":[{"Pid":"F-05001-001-01","Pname":"銘珍 - 藍絲可奶油烏豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-002-01","Pname":"銘珍 - 藍絲可奶油芋頭餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-003-01","Pname":"銘珍 - 藍絲可奶油棗泥餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-004-01","Pname":"銘珍 - 藍絲可奶油綠豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-006-01","Pname":"銘珍 - 藍絲可奶油鳳梨醬","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-101-01","Pname":"銘珍 - 烏豆沙","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-102-01","Pname":"銘珍 - 酥油烏豆沙","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-102-02","Pname":"銘珍 - 酥油烏豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-103-01","Pname":"銘珍 - 棗泥餡","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-103-02","Pname":"銘珍 - 棗泥餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-104-01","Pname":"銘珍 - 加油綠豆沙","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-104-02","Pname":"銘珍 - 加油綠豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-105-01","Pname":"銘珍 - 炒沙拉油白豆沙","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-105-02","Pname":"銘珍 - 炒沙拉油白豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-106-01","Pname":"銘珍 - 紅豆餡(硬)","Specification":"6kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-106-02","Pname":"銘珍 - 紅豆餡(硬)","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-110-01","Pname":"銘珍 - 咖哩肉豆沙","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-110-02","Pname":"銘珍 - 咖哩肉豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-151-01","Pname":"銘珍 - 法式栗子餡","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-151-02","Pname":"銘珍 - 法式栗子餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-152-01","Pname":"銘珍 - 百香金柚","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-152-02","Pname":"銘珍 - 百香金柚","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-153-01","Pname":"銘珍 - 小月餅餡","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-153-02","Pname":"銘珍 - 小月餅餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-154-01","Pname":"銘珍 - 日本抹茶餡","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-154-02","Pname":"銘珍 - 日本抺茶餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-155-01","Pname":"銘珍 - 拿鐵咖啡餡","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-155-02","Pname":"銘珍 - 拿鐵咖啡餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-156-01","Pname":"銘珍 - 酒釀桂圓餡","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-156-02","Pname":"銘珍 - 酒釀桂圓餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-201-01","Pname":"銘珍 - 高雄九號特級低甜紅豆粒餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-202-01","Pname":"銘珍 - 低糖白豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05001-203-01","Pname":"銘珍 - 蜜紅豆粒","Specification":"3kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05002-001-01","Pname":"台傑 - 低糖奶油烏豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05002-002-01","Pname":"台傑 - 綠豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05002-003-01","Pname":"台傑 - 白豆沙","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"},{"Pid":"F-05002-004-01","Pname":"台傑 - 芋泥餡","Specification":"1kg","Unit":"包","BarCode":null,"ClassId":"F-05"}],"ClassId":"F-05","ClassName":"豆沙","ClassDescription":null},{"Products":[],"ClassId":"F-06","ClassName":"麵粉、預拌粉","ClassDescription":null},{"Products":[],"ClassId":"F-07","ClassName":"冷凍食品","ClassDescription":null},{"Products":[],"ClassId":"F-08","ClassName":"色素、香料","ClassDescription":null},{"Products":[{"Pid":"F-09001-001-01","Pname":"飛馬粗粒黑胡椒","Specification":"600g","Unit":"包","BarCode":null,"ClassId":"F-09"},{"Pid":"F-09001-001-02","Pname":"飛馬細粉純黑胡椒 #6","Specification":"600g","Unit":"盒","BarCode":null,"ClassId":"F-09"},{"Pid":"F-09003-001-01","Pname":"黃芥茉醬 - 塑膠罐","Specification":"623g","Unit":"罐","BarCode":"011209002245","ClassId":"F-09"},{"Pid":"F-09003-002-01","Pname":"黃芥茉醬 - 玻璃罐","Specification":null,"Unit":"罐","BarCode":null,"ClassId":"F-09"},{"Pid":"F-09004-001-01","Pname":"法式芥茉籽醬 - 玻璃罐","Specification":"200g","Unit":"罐","BarCode":null,"ClassId":"F-09"},{"Pid":"F-09004-002-01","Pname":"法式芥苿籽醬 - 陶罐","Specification":"500g","Unit":"罐","BarCode":null,"ClassId":"F-09"},{"Pid":"F-09005-001-01","Pname":"大蒜麵包醬","Specification":"1kg","Unit":"罐","BarCode":null,"ClassId":"F-09"},{"Pid":"F-09020-001-01","Pname":"聖塔安娜 - 楓糖漿","Specification":"710ml","Unit":"罐","BarCode":null,"ClassId":"F-09"},{"Pid":"F-09020-001-02","Pname":"聖塔安娜 - 楓糖漿","Specification":"710ml*12入","Unit":"箱","BarCode":null,"ClassId":"F-09"}],"ClassId":"F-09","ClassName":"調味料","ClassDescription":null},{"Products":[{"Pid":"F-10001-001-01","Pname":"吉利丁片","Specification":"20片","Unit":"包","BarCode":null,"ClassId":"F-10"},{"Pid":"F-10001-002-01","Pname":"吉利丁片 - 黃盒","Specification":"1kg","Unit":"盒","BarCode":null,"ClassId":"F-10"},{"Pid":"F-10001-003-01","Pname":"吉利丁片 - 白盒","Specification":"1kg","Unit":"盒","BarCode":null,"ClassId":"F-10"},{"Pid":"F-10001-004-01","Pname":"白明膠","Specification":"150g","Unit":"包","BarCode":null,"ClassId":"F-10"},{"Pid":"F-10001-004-02","Pname":"白明膠","Specification":"1kg","Unit":"罐","BarCode":null,"ClassId":"F-10"}],"ClassId":"F-10","ClassName":"食品添加物","ClassDescription":null},{"Products":[],"ClassId":"F-11","ClassName":"酒、油","ClassDescription":null},{"Products":[{"Pid":"F-99001-001-01","Pname":"遠洋鮪魚特餐","Specification":"1880g","Unit":"罐","BarCode":null,"ClassId":"F-99"},{"Pid":"F-99101-001-01","Pname":"Oreo餅乾","Specification":null,"Unit":"條","BarCode":null,"ClassId":"F-99"},{"Pid":"F-99101-002-01","Pname":"Oreo餅乾碎","Specification":"454g","Unit":"包","BarCode":null,"ClassId":"F-99"},{"Pid":"F-99101-002-02","Pname":"Oreo餅乾碎","Specification":"454g*12入","Unit":"箱","BarCode":null,"ClassId":"F-99"}],"ClassId":"F-99","ClassName":"其它","ClassDescription":null},{"Products":[],"ClassId":"T-00","ClassName":"非食品","ClassDescription":null},{"Products":[],"ClassId":"T-01","ClassName":"花嘴、擠花袋","ClassDescription":null},{"Products":[],"ClassId":"T-02","ClassName":"計量器具","ClassDescription":null},{"Products":[],"ClassId":"T-03","ClassName":"毛刷","ClassDescription":null},{"Products":[],"ClassId":"T-04","ClassName":"容器","ClassDescription":null},{"Products":[],"ClassId":"T-05","ClassName":"刀具","ClassDescription":null},{"Products":[],"ClassId":"T-06","ClassName":"打蛋器、攪拌機","ClassDescription":null},{"Products":[],"ClassId":"T-07","ClassName":"服裝","ClassDescription":null},{"Products":[{"Pid":"T-08001-001-01","Pname":"菜模 - NO.131","Specification":"6入","Unit":"盒","BarCode":null,"ClassId":"T-08"},{"Pid":"T-08001-001-02","Pname":"菜模 - NO.135","Specification":"6入","Unit":"盒","BarCode":null,"ClassId":"T-08"},{"Pid":"T-08001-001-03","Pname":"菜模 - NO.137","Specification":"6入","Unit":"盒","BarCode":"4962817261370","ClassId":"T-08"},{"Pid":"T-08001-001-04","Pname":"菜模 - NO.140","Specification":"6入","Unit":"盒","BarCode":null,"ClassId":"T-08"},{"Pid":"T-08001-001-05","Pname":"菜模 - NO.464","Specification":"6入","Unit":"盒","BarCode":null,"ClassId":"T-08"}],"ClassId":"T-08","ClassName":"模具","ClassDescription":null},{"Products":[],"ClassId":"T-09","ClassName":"網篩","ClassDescription":null},{"Products":[],"ClassId":"T-10","ClassName":"桿麵棍","ClassDescription":null},{"Products":[],"ClassId":"T-11","ClassName":"底墊","ClassDescription":null},{"Products":[],"ClassId":"T-12","ClassName":"包裝盒","ClassDescription":null},{"Products":[],"ClassId":"T-13","ClassName":"包裝袋","ClassDescription":null},{"Products":[],"ClassId":"T-99","ClassName":"其它","ClassDescription":null}]';
+
+        var app = new Vue({
+            //客戶名稱下拉
+            el: '#app',
+            data: {
+                message: '新增客戶銷貨售價',
+                menus: JSON.parse(custdata),
+                current_menu: null,
+                current_sub_menu: null,
+                menu_one_idx: 0,
+                menu_two_idx: 0,
+            },
+            watch: {
+                menu_one_idx: function() {
+                    console.log('this.menu_one_idx己改變', this.menu_one_idx);
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    this.menu_two_idx = 0;
+                },
+                menu_two_idx: function() {
+                    console.log('this.menu_two_idx己改變', this.menu_two_idx);
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                }
+            },
+            computed: {
+                init_menu: function() {
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    return this.menus;
+                },
+                change_menu: function() {
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    return this.current_sub_menu;
+                }
+            },
+            methods: {
+                onChange_dataItems: function(event) {
+                    console.log(this.menu_one_idx);
+                },
+            }
+        });
+
+        var app2 = new Vue({
+            //產品名稱下拉
+            el: '#app2',
+            data: {
+                menus: JSON.parse(proddata),
+                current_menu: null,
+                current_sub_menu: null,
+                menu_one_idx: 0,
+                menu_two_idx: 0,
+            },
+            watch: {
+                menu_one_idx: function() {
+                    //console.log('this.menu_one_idx己改變', this.menu_one_idx);
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Products[this.menu_two_idx];
+                    this.menu_two_idx = 0;
+                },
+                menu_two_idx: function() {
+                    //console.log('this.menu_two_idx己改變', this.menu_two_idx);
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Products[this.menu_two_idx];
+                }
+            },
+            computed: {
+                init_menu: function() {
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Products[this.menu_two_idx];
+                    return this.menus;
+                },
+                change_menu: function() {
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Products[this.menu_two_idx];
+                    return this.current_sub_menu;
+                }
+            },
+            methods: {
+                onChange_dataItems: function(event) {
+                    console.log(this.menu_one_idx);
+                },
+            }
+        });
+    </script>
+
+</body>
+
+</html>
