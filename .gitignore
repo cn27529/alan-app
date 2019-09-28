@@ -7,5 +7,5 @@ robots.txt
 node_modules/
 .elasticbeanstalk/
 *.log
-dotnet/CoreMVC01/bin/
-dotnet/CoreMVC01/obj
+core/CoreMVC01/bin/
+core/CoreMVC01/obj
