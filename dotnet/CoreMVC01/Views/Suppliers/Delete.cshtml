@@ -1,0 +1,45 @@
+﻿@model CoreMVC01.Models.Suppliers
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>刪除</h1>
+
+<h3></h3>
+<div>
+    <h4>廠商資料</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            公司名稱：
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sname)
+        </dd>
+        <dt class = "col-sm-2">
+            電話：
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stel)
+        </dd>
+        <dt class = "col-sm-2">
+            傳真：
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sfax)
+        </dd>
+        <dt class = "col-sm-2">
+            地址：
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Scity)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Sid" />
+        <input type="submit" value="刪除" class="btn btn-danger" /> |
+        <a asp-action="Index">回廠商列表</a>
+    </form>
+</div>

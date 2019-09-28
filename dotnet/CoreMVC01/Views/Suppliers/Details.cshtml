@@ -1,0 +1,42 @@
+﻿@model CoreMVC01.Models.Suppliers
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>廠商詳細資料</h1>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            公司名稱：
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sname)
+        </dd>
+        <dt class="col-sm-2">
+            電話：
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stel)
+        </dd>
+        <dt class="col-sm-2">
+            傳真：
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sfax)
+        </dd>
+        <dt class="col-sm-2">
+            地址：
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Scity)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Sid">編輯廠商資料</a> |
+    <a asp-action="Index">回廠商列表</a>
+</div>

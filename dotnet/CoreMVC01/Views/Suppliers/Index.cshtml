@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CoreMVC01.Models.Suppliers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>廠商資料列表</h1>
+
+<p>
+    <a asp-action="Create">新增廠商資料</a>
+</p>
+<form asp-controller="Suppliers" asp-action="Index">
+    <p>
+        公司名稱：<input type="text" name="searchSname">
+        <input type="submit" value="查詢" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr style="background-color:black;color:white">
+            <th>
+                代號
+            </th>
+            <th>
+                公司名稱
+            </th>
+            <th>
+                電話
+            </th>
+            <th>
+                傳真
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sfax)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Sid">詳細資料</a> |
+                <a asp-action="Edit" asp-route-id="@item.Sid">編輯</a> |
+                <a asp-action="Delete" asp-route-id="@item.Sid">刪除</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

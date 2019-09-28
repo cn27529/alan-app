@@ -1,0 +1,228 @@
+﻿@model CoreMVC01.Models.Sell
+<!DOCTYPE html>
+
+@{
+    ViewData["Title"] = "Create";
+}
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello - CoreMVC01</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Tocas UI：CSS 與元件 -->
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css" />*@
+    <!-- Tocas JS：模塊與 JavaScript 函式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
+</head>
+<body>
+    <h1>新增客戶產品售價</h1>
+    <form asp-action="Create">
+        <div id="app">
+            <table>
+                <tr>
+                    <td>客戶名稱：</td>
+                    <td>
+                        <select v-model="menu_one_idx" style="width:150px">
+                            <option v-bind:value="i" v-for="(item, i) in init_menu">{{ i+1 }}-{{ item.ClassName }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <select v-model="menu_two_idx" style="width:300px">
+                            <option v-bind:value="j" v-for="(item, j) in menus[menu_one_idx].Customers">
+                                {{item.Cid}}-{{ item.Cname }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            @*<p>menu={{ current_menu.ClassName }}, vlaue={{ current_menu.ClassId }}</p>*@
+            <p>sub menu={{ current_sub_menu.Cname }}, vlaue={{ current_sub_menu.Cid }}</p>
+        </div>
+        <div id="app2">
+            <table>
+                <tr>
+                    <td>產品名稱：</td>
+                    <td>
+                        <select v-model="menu_one_idx" style="width:150px">
+                            <option v-bind:value="i" v-for="(item, i) in init_menu">{{ i+1 }}-{{ item.ClassName }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <select v-model="menu_two_idx" style="width:300px" name="Pid">
+                            <option v-bind:value="j" v-for="(item, j) in menus[menu_one_idx].Products">
+                                {{ menu_one_idx+1 }}-{{ j+1 }}-{{ item.Pname }}
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>規格：</td>
+                    <td><P>{{current_sub_menu.Specification}}<P></td>
+                </tr>
+                <tr>
+                    <td>單位：</td>
+                    <td><P>{{current_sub_menu.Unit}}</P></td>
+                </tr>
+            </table>
+        </div>
+        <div id="appSubmit">
+            <div>售價：<input type="text" name="SellPrice" v-model="submitData.SellPrice">
+            </div>
+            <input type="button" value="儲存" v-on:click="onSubmit" />
+        </div>
+    </form>
+
+    <script>
+        var custdata = '@Html.Raw(ViewBag.Customerdata)';
+        var proddata = '@Html.Raw(ViewBag.Productdata)';
+        @*客戶名稱下拉*@
+        var app = new Vue({
+            el: '#app',
+            data: {
+                menus: JSON.parse(custdata),
+                current_menu: null,
+                current_sub_menu: null,
+                menu_one_idx: 0,
+                menu_two_idx: 0,
+            },
+            watch: {
+                menu_one_idx: function () {
+                    console.log('this.menu_one_idx己改變', this.menu_one_idx);
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    this.menu_two_idx = 0;
+                },
+                menu_two_idx: function () {
+                    console.log('this.menu_two_idx己改變', this.menu_two_idx);
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                }
+            },
+            computed: {
+                init_menu: function () {
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    return this.menus;
+                },
+                change_menu: function () {
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Customers[this.menu_two_idx];
+                    return this.current_sub_menu;
+                }
+            },
+            
+        });
+
+        @*產品名稱下拉*@
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                menus: JSON.parse(proddata),
+                current_menu: null,
+                current_sub_menu: null,
+                menu_one_idx: 0,
+                menu_two_idx: 0,
+            },
+            watch: {
+                menu_one_idx: function () {
+                    //console.log('this.menu_one_idx己改變', this.menu_one_idx);
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Products[this.menu_two_idx];
+                    this.menu_two_idx = 0;
+                },
+                menu_two_idx: function () {
+                    //console.log('this.menu_two_idx己改變', this.menu_two_idx);
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Products[this.menu_two_idx];
+                }
+            },
+            computed: {
+                init_menu: function () {
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Products[this.menu_two_idx];
+                    return this.menus;
+                },
+                change_menu: function () {
+                    this.current_menu = this.menus[this.menu_one_idx];
+                    this.current_sub_menu = this.menus[this.menu_one_idx].Products[this.menu_two_idx];
+                    return this.current_sub_menu;
+                }
+            },
+            
+        });
+
+        var appSubmit = new Vue({
+            el: '#appSubmit',
+            data: {
+                submitData: {
+                    Specification: null,
+                    Unit: null,
+                    ClassId: null,
+                    Cid: null,
+                    ClassId2: null,
+                    Pid:null,
+                    SellPrice: 0,
+                },
+                
+            },
+            methods: {
+                onSubmit: function (event) {
+
+                    this.submitData.Specification = app2.current_sub_menu.Specification;
+                    this.submitData.Unit = app2.current_sub_menu.Unit;
+                    this.submitData.ClassId = app.current_menu.ClassId;
+                    this.submitData.Cid = app.current_sub_menu.Cid;
+                    this.submitData.ClassId2 = app2.current_sub_menu.ClassId;
+                    this.submitData.Pid = app2.current_sub_menu.Pid;
+
+                    console.log(JSON.stringify(this.submitData));
+
+                    var data = {
+                        Specification: "qqq",
+                        Unit: "111",
+                        ClassId: "222",
+                        Cid: "333",
+                        ClassId2: "444",
+                        Pid: "555",
+                        SellPrice: 999,
+                    };
+
+                    onSave(data);
+
+
+                },
+            }
+        });
+
+        var onSave = function onSave(data) {
+
+            console.log(data);
+
+            //ajax request
+            let promise =
+                $.ajax({
+                    url: "/sells/savecreate",
+                    method: "post",
+                    contentType: 'application/json',
+                    data: { SellSaveModel: data }
+        
+                            }); 
+
+                        //promise.done(function (data)
+                        //{
+                        //    //顯示Server端回傳的資料
+                        //    console.log(data);
+                        //});
+
+        }
+
+
+    </script>
+</body>
+</html>

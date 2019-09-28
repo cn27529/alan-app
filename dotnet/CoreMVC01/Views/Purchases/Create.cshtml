@@ -1,0 +1,62 @@
+﻿@model CoreMVC01.ViewModels.Purchases.PurchasesIndexViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Purchase</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">進貨廠商：</label>
+                @Html.DropDownListFor(m => m.Purchase.FirstOrDefault().Sid, Model.SupplierList, "請選擇" , new { @class = "from-control" })
+                <span asp-validation-for="Purchase.FirstOrDefault().Sid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">進貨產品代號：</label>
+                <input asp-for="Purchase.FirstOrDefault().Spid" class="form-control" />
+                <span asp-validation-for="Purchase.FirstOrDefault().Spid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">進貨產品名稱：</label>
+                <input asp-for="Purchase.FirstOrDefault().Spname" class="form-control" />
+                <span asp-validation-for="Purchase.FirstOrDefault().Spname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">產品規格：</label>
+                <input asp-for="Purchase.FirstOrDefault().Specification" class="form-control" />
+                <span asp-validation-for="Purchase.FirstOrDefault().Specification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">單位：</label>
+                <input asp-for="Purchase.FirstOrDefault().Spunit" class="form-control" />
+                <span asp-validation-for="Purchase.FirstOrDefault().Spunit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">進價：</label>
+                <input asp-for="Purchase.FirstOrDefault().Spprice" class="form-control" />
+                <span asp-validation-for="Purchase.FirstOrDefault().Spprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">備註：</label>
+                <input asp-for="Purchase.FirstOrDefault().Note" class="form-control" />
+                <span asp-validation-for="Purchase.FirstOrDefault().Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="儲存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">回廠商進貨品項列表</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,53 @@
+﻿@model CoreMVC01.Models.Suppliers
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>新增</h1>
+
+<h4>廠商資料</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">廠商代號</label>
+                <input asp-for="Sid" class="form-control" />
+                <span asp-validation-for="Sid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">公司名稱</label>
+                <input asp-for="Sname" class="form-control" />
+                <span asp-validation-for="Sname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">電話</label>
+                <input asp-for="Stel" class="form-control" />
+                <span asp-validation-for="Stel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">傳真</label>
+                <input asp-for="Sfax" class="form-control" />
+                <span asp-validation-for="Sfax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">地址</label>
+                <input asp-for="Scity" class="form-control" />
+                <span asp-validation-for="Scity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="儲存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">回廠商列表</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

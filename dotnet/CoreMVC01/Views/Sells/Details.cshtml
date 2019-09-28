@@ -1,0 +1,30 @@
+﻿@model CoreMVC01.Models.Sell
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Sell</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SellPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SellPrice)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Cid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

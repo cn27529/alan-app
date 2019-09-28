@@ -1,0 +1,82 @@
+﻿@model CoreMVC01.ViewModels.Sells.SellIndexViewmodel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Sells" asp-action="Index">
+    <p>
+        客戶名稱：@Html.DropDownListFor(m => m.Customers.FirstOrDefault().Cid, Model.CustomerList, new { @class = "from-control" }) <br />  
+        產品名稱：<input type="text" name="Pname">
+        <input type="submit" value="查詢" />
+    </p>
+</form>
+<script type="text/javascript">
+    $(function () {
+        $("h1") = $("#cid option")
+        $("cid").css("color", "Red");
+    }
+        )
+</script>
+<table class="table">
+    <thead style="background-color:black;color:white;text-align:center">
+        <tr>
+            <th>
+                客戶名稱
+            </th>
+            <th>
+                代號
+            </th>
+            <th>
+                產品名稱
+            </th>
+            <th>
+                規格
+            </th>
+            <th>
+                單位
+            </th>
+            <th>
+                售價
+            </th>
+            <th></th>
+        </tr>
+    </thead>    
+    <tbody>
+       @foreach (var sel in Model.Sells.OrderBy(e => e.Cid))    
+       {
+        <tr>
+            @foreach (var cus in Model.Customers.Where(e => e.Cid == sel.Cid)) 
+            {
+                <td>
+                    @Html.DisplayFor(modelitem => cus.Cname)
+                </td>
+            }
+            @foreach (var prod in Model.Products.Where(e => e.Pid == sel.Pid))
+            {
+                <td>
+                    @Html.DisplayFor(modelitem => prod.Pid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => prod.Pname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => prod.Specification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => prod.Unit)
+                </td>
+            }
+            <td align="right">
+                @Html.DisplayFor(modelitem => sel.SellPrice)
+            </td>
+            <td></td>
+        </tr>
+       }
+    </tbody>
+</table>

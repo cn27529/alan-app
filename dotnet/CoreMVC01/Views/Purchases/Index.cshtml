@@ -1,0 +1,72 @@
+﻿@model CoreMVC01.ViewModels.Purchases.PurchasesIndexViewModel
+ 
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>廠商進貨品項</h1>
+<p>
+    <a asp-action="Create">新增廠商進貨品項</a>
+</p>
+<form asp-controller="Purchase" asp-action="Index">
+    <p>
+        廠商名稱：@Html.DropDownListFor(m => m.Purchase.FirstOrDefault().Sid, Model.SupplierList, new { @class = "from-control" }) <br />
+        產品名稱：<input type="text" name="Spname">
+        <input type="submit" value="查詢" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr style="background-color:black;color:white">
+            <th width="10%">
+                廠商名稱
+            </th>
+            <th width="12%">
+                廠商產品代號
+            </th>
+            <th width="18%">
+                產品名稱
+            </th>
+            <th width="10%">
+                規格
+            </th>
+            <th width="8%">
+                單位
+            </th>
+            <th width="10%">
+                進價
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item1 in Model.Supplier)
+        {
+            @foreach (var item2 in Model.Purchase.Where(e => e.Sid == item1.Sid))
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item1.Sname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item2.Spid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item2.Spname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item2.Specification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item2.Spunit)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelitem => item2.Spprice)
+            </td>
+            <td>
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
