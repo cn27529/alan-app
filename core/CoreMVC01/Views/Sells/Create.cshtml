@@ -1,7 +1,8 @@
 ﻿
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Sells Create";
 }
+
 
     <h1>新增客戶產品售價</h1>
     <form asp-action="Create">
@@ -169,18 +170,7 @@
 
                     console.log(JSON.stringify(this.submitData));
 
-                    var data = {
-                        Specification: "qqq",
-                        Unit: "111",
-                        ClassId: "222",
-                        Cid: "333",
-                        ClassId2: "444",
-                        Pid: "555",
-                        SellPrice: 999,
-                    };
-
                     onSave(this.submitData);
-
 
                 },
             }

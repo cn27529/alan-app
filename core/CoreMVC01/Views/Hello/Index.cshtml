@@ -1,17 +1,7 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@{
+    ViewData["Title"] = "Hello Index";
+}
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello-Index</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- Tocas UI：CSS 與元件 -->
-    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css" />*@
-    <!-- Tocas JS：模塊與 JavaScript 函式 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
-</head>
-<body>
-    <h1>hello index</h1>
-</body>
-</html>
+<h1 class="display-1">
+        @ViewData["Title"]
+    </h1>

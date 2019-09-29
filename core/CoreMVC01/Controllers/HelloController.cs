@@ -23,11 +23,12 @@ namespace CoreMVC01.Controllers
         }
 
         [HttpPost]
-        public JsonResult SaveCreate(int SellPrice)
+        public ActionResult SaveCreate(string data)
         {
-
-            var result = new { result = "ok", errorMessage = "", qqq = 9999999 };
-            return new JsonResult(result);
+            SellSaveModel model = JsonConvert.DeserializeObject<SellSaveModel>(data);
+            //Console.WriteLine(data);
+            var result = new { result = "ok", errorMessage = "", data = data, model = model };
+            return Json(result);
         }
 
     }
