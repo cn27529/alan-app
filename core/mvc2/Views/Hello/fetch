@@ -1,0 +1,41 @@
+var onSave = function onSave(data) {
+
+            var jsonString = JSON.stringify(data);
+            console.log('jsonString', jsonString);
+            
+            fetch('/hello/SaveCreate2', {
+                method: 'post',
+                mode: 'no-cors', // no-cors, cors, *same-origin
+                headers: { 'Content-Type': 'application/json' },
+                body: jsonString,
+            })
+            .then(handleErrors)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                console.log('json', json);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+        }
+
+        var handleErrors = function handleErrors(response) {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        };
+
+
+
+
+[HttpPost]
+        public JsonResult SaveCreate2(SellSaveModel data)
+        {
+            var result = new { result = "ok", errorMessage = "", data = data };
+            return Json(result);
+        }        
