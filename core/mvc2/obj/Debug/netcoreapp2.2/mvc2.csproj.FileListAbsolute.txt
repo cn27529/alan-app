@@ -28,3 +28,5 @@
 /Users/Cn27529/NodejsWorkspace/alan-app/core/mvc2/obj/Debug/netcoreapp2.2/mvc2.dll
 /Users/Cn27529/NodejsWorkspace/alan-app/core/mvc2/obj/Debug/netcoreapp2.2/mvc2.pdb
 /Users/Cn27529/NodejsWorkspace/alan-app/core/mvc2/obj/Debug/netcoreapp2.2/mvc2.csproj.CopyComplete
+/Users/Cn27529/NodejsWorkspace/alan-app/core/mvc2/obj/Debug/netcoreapp2.2/Razor/Views/Hello/Create.g.cshtml.cs
+/Users/Cn27529/NodejsWorkspace/alan-app/core/mvc2/obj/Debug/netcoreapp2.2/Razor/Views/Hello/Index.g.cshtml.cs

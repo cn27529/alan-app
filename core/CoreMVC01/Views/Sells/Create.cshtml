@@ -1,22 +1,8 @@
-﻿@model CoreMVC01.Models.Sell
-<!DOCTYPE html>
-
+﻿
 @{
     ViewData["Title"] = "Create";
 }
-<html>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello - CoreMVC01</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- Tocas UI：CSS 與元件 -->
-    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css" />*@
-    <!-- Tocas JS：模塊與 JavaScript 函式 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
-</head>
-<body>
     <h1>新增客戶產品售價</h1>
     <form asp-action="Create">
         <div id="app">
@@ -193,7 +179,7 @@
                         SellPrice: 999,
                     };
 
-                    onSave(data);
+                    onSave(this.submitData);
 
 
                 },
@@ -202,27 +188,25 @@
 
         var onSave = function onSave(data) {
 
-            console.log(data);
-
+            var jsonString = JSON.stringify(formData);
+            console.log('jsonString', jsonString);
+            
             //ajax request
             let promise =
                 $.ajax({
-                    url: "/sells/savecreate",
+                    url: "/hello/SaveCreate?data="+jsonString,
                     method: "post",
                     contentType: 'application/json',
-                    data: { SellSaveModel: data }
-        
-                            }); 
+                    data: '{}',
+                });
 
-                        //promise.done(function (data)
-                        //{
-                        //    //顯示Server端回傳的資料
-                        //    console.log(data);
-                        //});
+                promise.done(function (data)
+                {
+                    //顯示Server端回傳的資料
+                    console.log(data);
+                });
 
         }
 
 
     </script>
-</body>
-</html>

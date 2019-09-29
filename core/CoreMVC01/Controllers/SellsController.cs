@@ -170,21 +170,14 @@ namespace CoreMVC01.Controllers
             return View();
         }
 
-        // POST: Sells/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //public async Task<IActionResult> Create([Bind("Cid,Pid,SellPrice")] Sell sell)
-        public JsonResult SaveCreate(SellSaveModel SellSaveModel)
+        public ActionResult SaveCreate(string data)
         {
-
-            var result = new { result = "ok", errorMessage = "", server = JsonConvert.SerializeObject(SellSaveModel) };
-            return new JsonResult(result);
+            SellSaveModel model = JsonConvert.DeserializeObject<SellSaveModel>(data);
+            //Console.WriteLine(data);
+            var result = new { result = "ok", errorMessage = "", data = data, model = model };
+            return Json(result);
         }
-
-
-
-
 
         // GET: Sells/Edit/5
         public async Task<IActionResult> Edit(string id)
